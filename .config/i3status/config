@@ -1,0 +1,22 @@
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 5
+}
+
+order += "cpu_usage"
+order += "load"
+order += "tztime local"
+
+cpu_usage {
+    format = "CPU: %usage"
+}
+
+load {
+    format = "Load: %1min"
+}
+
+tztime local {
+    format = "%Y-%m-%d %H:%M:%S"
+}
+
