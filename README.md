@@ -25,6 +25,7 @@ First, check out the dotfiles repo in your $HOME directory using git
 ```
 $ git clone git@github.com/pmafynn/dotfiles.git
 $ cd dotfiles
+$ git submodule update --init --recursive
 ```
 
 then use GNU stow to create symlinks
