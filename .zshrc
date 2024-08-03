@@ -106,6 +106,8 @@ alias init="sudo pacman -Syu"
 alias install="sudo pacman -S"
 alias remove="sudo pacman -R"
 
+alias upFire="cd /home/fynn/.mozilla/firefox/rv4kxhz8.arkenfox/ && bash updater.sh -s"
+
 
 #shutdown // reboot
 alias shutdown="sudo shutdown -h now"
