@@ -101,17 +101,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # apt package mangager aliases:
-alias update="sudo apt update"
-alias upgrade="sudo apt upgrade"
-alias ty="cd /home/fynn/misc/projects/typeGame && source typeEnv/bin/activate && python3 src/typing.py >> scores && deactivate && cd"
-alias init1="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && clear && fortune | cowsay && echo ----------------------------------------- && neofetch && echo ----------------------------------------- "
-alias init2="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && ty && clear"
+alias init="sudo pacman -Syu"
 
-alias install="sudo apt install"
-alias remove="sudo apt remove"
-alias clean="sudo apt autoremove"
-#be careful with this
-alias purge="sudo apt purge"
+alias install="sudo pacman -S"
+alias remove="sudo pacman -R"
+
 
 #shutdown // reboot
 alias shutdown="sudo shutdown -h now"
@@ -121,11 +115,8 @@ alias reboot="sudo reboot"
 alias ..="cd .."
 alias ...="cd ../.."
 
-#eclipse
-alias eclip="misc/programs/eclipse/eclipse"
-
 #nvim config
-alias nvimConfig="cd ~/.config/nvim/ && vi init.lua"
+alias cf="cd /home/fynn/.config"
 
 #fetch merge with upstream
 alias pullup="git fetch upstream && git checkout master && git merge upstream/master"
@@ -133,10 +124,9 @@ alias pullup="git fetch upstream && git checkout master && git merge upstream/ma
 #activate ds enviornment
 alias initConda="cd && source anaconda3/bin/activate"
 alias aag="initConda && conda activate aag && cd ~/misc/uni/2semester/dsAAG/aag-project"
-alias acse="cd misc/uni/2semester/acse/projects/"
 alias ds="cd misc/uni/2semester/dsAAG/report"
-alias script="cd misc/computer/scripts"
 alias y="yazi"
+alias vi="nvim"
 
 alias s="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | xargs vi"
 
@@ -144,22 +134,22 @@ alias s="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}'
 #docker
 alias dockerdesk="systemctl --user start docker-desktop"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/fynn/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/fynn/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/fynn/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/fynn/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/fynn/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/fynn/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/fynn/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/fynn/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
