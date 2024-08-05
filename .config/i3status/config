@@ -7,6 +7,13 @@ general {
 order += "cpu_usage"
 order += "load"
 order += "tztime local"
+order += "wireless mlan0" # Replace mlan0 with your actual wireless interface name
+
+wireless mlan0 { # Replace mlan0 with your actual wireless interface name
+    format_up = "WLAN: %essid %quality %bitrate"
+    format_down = "WLAN: down"
+    format_quality = "%quality"
+}
 
 cpu_usage {
     format = "CPU: %usage"
@@ -19,4 +26,5 @@ load {
 tztime local {
     format = "%Y-%m-%d %H:%M:%S"
 }
+
 
