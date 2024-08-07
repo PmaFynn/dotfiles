@@ -134,6 +134,9 @@ alias s="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}'
 
 alias usb="lsblk"
 
+alias pwc="pass show -c"
+alias pwi="pass insert"
+
 #docker
 alias dockerdesk="systemctl --user start docker-desktop"
 
