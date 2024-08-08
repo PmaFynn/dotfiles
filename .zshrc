@@ -143,8 +143,6 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
-alias vi="nvim"
-
 alias s="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | xargs vi"
 
 alias usb="lsblk"
