@@ -124,10 +124,19 @@ alias cf="cd /home/fynn/.config"
 alias pullup="git fetch upstream && git checkout master && git merge upstream/master"
 
 #activate ds enviornment
-alias initConda="cd && source anaconda3/bin/activate"
-alias aag="initConda && conda activate aag && cd ~/misc/uni/2semester/dsAAG/aag-project"
-alias ds="cd misc/uni/2semester/dsAAG/report"
-alias y="yazi"
+# alias initConda="cd && source anaconda3/bin/activate"
+# alias aag="initConda && conda activate aag && cd ~/misc/uni/2semester/dsAAG/aag-project"
+# alias ds="cd misc/uni/2semester/dsAAG/report"
+alias papers="cd /home/fynn/misc/ambidex/papers/ && yazi"
+
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 alias vi="nvim"
 
 alias s="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | xargs vi"
