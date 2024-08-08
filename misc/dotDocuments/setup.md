@@ -3,6 +3,7 @@
 ## Packages to install
 alacritty
 bat
+gnome-screenshot
 fastfetch
 feh
 firefox
@@ -31,6 +32,9 @@ poppler
 zoxide
 mandoc
 interception-caps2esc
+
+## setting up symlink vi that points to nvim
+sudo ln -s /usr/bin/nvim /usr/bin/vi
 
 ## setting up caps2esc
 [Remap Caps Lock to Escape and Control](https://ejmastnak.com/tutorials/arch/caps2esc/)
