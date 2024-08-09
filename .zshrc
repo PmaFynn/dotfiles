@@ -129,6 +129,8 @@ alias cf="cd /home/fynn/.config"
 #fetch merge with upstream
 alias pullup="git fetch upstream && git checkout master && git merge upstream/master"
 
+alias cleanImages="mv /home/fynn/*.png /home/fynn/images/screenshots/"
+
 #activate ds enviornment
 # alias initConda="cd && source anaconda3/bin/activate"
 # alias aag="initConda && conda activate aag && cd ~/misc/uni/2semester/dsAAG/aag-project"
@@ -149,6 +151,8 @@ alias usb="lsblk"
 
 alias pwc="pass show -c"
 alias pwi="pass insert"
+
+alias ls="exa"
 
 #docker
 alias dockerdesk="systemctl --user start docker-desktop"
