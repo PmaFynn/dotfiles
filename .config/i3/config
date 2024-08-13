@@ -71,6 +71,9 @@ bindsym $mod+c kill
 # start dmenu (a program launcher)
 bindsym $mod+p exec --no-startup-id dmenu_run
 
+# bar toggle, hide or show
+bindsym $mod+m bar mode toggle
+
 # bookmarks
 # bindsym $mod+i exec --no-startup-id sh -c "xdotool type $(grep -v '^#' ~/misc/computer/bookmarks | dmenu -i -l 50 | cut -f2)"
 # bindsym $mod+i exec --no-startup-id sh -c "xdotool type \"$(grep -v '^#' ~/misc/computer/bookmarks | dmenu -i -l 50 | cut -f2)\""
