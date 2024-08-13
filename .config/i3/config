@@ -31,7 +31,7 @@ exec_always --no-startup-id feh --bg-scale images/solarpunkgood.jpg
 exec_always --no-startup-id dropbox start
 
 #setting dpi to 192 on surface 
-exec --no-startup-id xrandr --output eDP-1 --dpi 192
+# exec --no-startup-id xrandr --output eDP-1 --dpi 192
 
 
 #picom
@@ -215,8 +215,17 @@ bindsym $mod+r mode "resize"
 gaps inner 5
 gaps outer 3
 
+
+
 # Remove borders
 for_window [class=".*"] border pixel 5
+
+# class                 border  backgr. text  indicator child_border
+# client.focused          #4c7899 #285577 #ffffff #2e9ef4 #285577
+client.focused          #ff0000 #285577 #ffffff #2e9ef4 #285577
+client.unfocused        #333333 #222222 #888888 #292d3e #222222
+client.focused_inactive #484e50 #5f676a #d8dee9 #484e50 #5f676a
+client.urgent           #2f343a #900000 #ffffff #900000 #2f343a
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

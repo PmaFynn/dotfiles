@@ -108,3 +108,7 @@ Then, set zathura as default using xdg-mime(1)
 xdg-mime default org.pwmt.zathura.desktop application/pdf
 ```
 
+## Install all nerfonts 
+```
+sudo pacman -S $(pacman -Sgq nerd-fonts)
+```
