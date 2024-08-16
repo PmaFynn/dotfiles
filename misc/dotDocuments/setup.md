@@ -57,10 +57,10 @@ sudo pacman -S interception-caps2esc
 
 ##### Create the configuration file /etc/udevmon.yaml (if necessary) and inside it add the following job:
 ```
-- JOB: "intercept -g $DEVNODE | caps2esc -m 1| uinput -d $DEVNODE"
-    DEVICE:
-      EVENTS:
-        EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+- JOB: "intercept -g $DEVNODE | caps2esc -m 1 | uinput -d $DEVNODE"
+  DEVICE:
+    EVENTS:
+      EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
 ```
 
 ##### Create the systemd unit file /etc/systemd/system/udevmon.service (if necessary) and inside it add the contents
