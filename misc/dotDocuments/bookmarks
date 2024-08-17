@@ -23,3 +23,5 @@ rust	https://doc.rust-lang.org/std/index.html
 rustTutorialTimeStamp	https://youtu.be/BpPEoZW5IiY?si=PgZwZn2dpDoKFra9&t=10321
 rustTutorial	https://practice.course.rs/compound-types/intro.html
 rustExamples	https://doc.rust-lang.org/stable/rust-by-example/index.html
+rustBestPrac	https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html
+idiomaticRust	https://github.com/mre/idiomatic-rust

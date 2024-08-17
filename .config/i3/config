@@ -218,8 +218,6 @@ bindsym $mod+r mode "resize"
 gaps inner 5
 gaps outer 3
 
-
-
 # Remove borders
 for_window [class=".*"] border pixel 5
 
