@@ -146,7 +146,25 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
-alias s="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | xargs vi"
+alias svi="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | xargs vi"
+
+# find music fast
+ms() {
+  fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
+mpv "$file"; done
+}
+
+# play random song fast
+rms() {
+  fd -e mp3 -t f -0 | shuf -z -n 1 | xargs -0 mpv
+}
+
+rmsl() {
+  while true; do
+    fd -e mp3 -t f -0 | shuf -z -n 1 | xargs -0 mpv
+  done
+}
+
 
 alias usb="lsblk"
 
