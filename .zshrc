@@ -4,6 +4,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export ICECAT_HOME="/opt/icecat/"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -151,6 +152,15 @@ alias usb="lsblk"
 
 alias pwc="pass show -c"
 alias pwi="pass insert"
+
+# LLMs
+alias gemma="ollama run gemma2:27b"
+alias phi="ollama run phi3:medium"
+alias llama="ollama run llama3.1:latest"
+
+#yt-dlp
+alias getAudio="yt-dlp --extract-audio --audio-format mp3"
+alias yt="yt-dlp"
 
 alias ls="exa"
 
