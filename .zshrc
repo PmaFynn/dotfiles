@@ -148,6 +148,33 @@ function yy() {
 }
 alias svi="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | xargs vi"
 
+#gets title and links of a yt playlist into a json file
+getLinks() {
+    if [[ -z "$1" || -z "$2" ]]; then
+        echo "Usage: getLinks <playlist_url> <nameOfJsonFile>"
+        return 1
+    fi
+    
+    # Set the default directory
+    SAVE_DIR=~/media/playlistsAsTxt/
+    
+    # Create the directory if it doesn't exist
+    mkdir -p "$SAVE_DIR"
+    
+    # Set the output file path
+    OUTPUT_FILE="${SAVE_DIR}${2}.json"
+    
+    # Run yt-dlp and save to the specified file
+    yt-dlp -j --flat-playlist "$1" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id)}]' > "$OUTPUT_FILE"
+    
+    if [[ $? -eq 0 ]]; then
+        echo "Playlist links saved to $OUTPUT_FILE"
+    else
+        echo "An error occurred."
+    fi
+}
+
+
 # find music fast
 ms() {
   fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
