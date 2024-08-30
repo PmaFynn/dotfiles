@@ -5,6 +5,8 @@ alacritty
 bat
 gnome-screenshot
 zip
+ytfzf
+mpv
 unzip
 fastfetch
 feh
@@ -36,6 +38,9 @@ zoxide
 mandoc
 interception-caps2esc
 entr
+
+## Other Stuff to install:
+yt-dlp
 
 ## setting up symlink vi that points to nvim
 ```

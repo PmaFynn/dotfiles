@@ -203,9 +203,14 @@ alias gemma="ollama run gemma2:27b"
 alias phi="ollama run phi3:medium"
 alias llama="ollama run llama3.1:latest"
 
+#yt
+alias yt="ytfzf"
+
 #yt-dlp
 alias getAudio="yt-dlp --extract-audio --audio-format mp3"
-alias yt="yt-dlp"
+alias getVideo="yt-dlp"
+
+
 
 alias ls="exa"
 
