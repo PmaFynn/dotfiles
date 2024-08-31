@@ -26,5 +26,7 @@ rustExamples	https://doc.rust-lang.org/stable/rust-by-example/index.html
 rustBestPrac	https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html
 idiomaticRust	https://github.com/mre/idiomatic-rust
 crossterm	https://docs.rs/crossterm/latest/crossterm/
-awesomeCli	https://github.com/agarrharr/awesome-cli-apps
+awesomeCli	https://github.com/agarrharr/awesome-cli-apps	anthology of cli tools
 hackerNews	https://news.ycombinator.com/
+cat -v	https://harmful.cat-v.org/	funny page -> lot of shit takes
+openSourceTrends	https://github.com/trending
