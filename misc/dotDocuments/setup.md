@@ -6,6 +6,7 @@ bat
 gnome-screenshot
 zip
 ytfzf
+yt-dlp
 mpv
 unzip
 fastfetch
