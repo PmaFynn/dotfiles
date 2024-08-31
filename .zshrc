@@ -109,9 +109,10 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # apt package mangager aliases:
 alias init="sudo pacman -Syu"
+alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
 
 alias install="sudo pacman -S"
-alias remove="sudo pacman -R"
+alias remove="sudo pacman -Rn"
 
 alias upFire="cd /home/fynn/.mozilla/firefox/rv4kxhz8.arkenfox/ && bash updater.sh -s"
 
@@ -174,9 +175,54 @@ getLinks() {
     fi
 }
 
+getFromJson() {
+    # Ask what the user wants to do
+    echo "Do you want to: [w]atch the video, [d]ownload the audio, or [v]ideo download?"
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        w)
+            yt_dlp_command="mpv"
+            ;;
+        d)
+            cd ~/media/music/misc/
+            yt_dlp_command="yt-dlp --extract-audio --audio-format mp3"
+            ;;
+        v)
+            cd ~/media/videos/misc/
+            yt_dlp_command="yt-dlp"
+            ;;
+        *)
+            echo "Invalid option selected"
+            return 1
+            ;;
+    esac
+
+    # Use fzf to find a title in the JSON files
+    selected=$(jq -r '.[] | .title' ~/media/playlistsAsJson/*.json | fzf --prompt="Search for a video: ")
+
+    if [ -z "$selected" ]; then
+        echo "No selection made."
+        return 1
+    fi
+
+    # Get the corresponding URL
+    url=$(jq -r --arg title "$selected" '.[] | select(.title == $title) | .url' ~/media/playlistsAsJson/*.json)
+
+    if [ -z "$url" ]; then
+        echo "No URL found for the selected title."
+        return 1
+    fi
+
+    eval "$yt_dlp_command \"$url\""
+}
+
+
 
 # find music fast
-ms() {
+mss() {
   fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
 mpv "$file"; done
 }
@@ -208,7 +254,8 @@ alias yt="ytfzf"
 
 #yt-dlp
 alias getAudio="yt-dlp --extract-audio --audio-format mp3"
-alias getVideo="yt-dlp"
+alias getMovie="yt-dlp -o /home/fynn/media/videos/movies/"
+alias getVideo="yt-dlp -o /home/fynn/media/videos/"
 
 
 

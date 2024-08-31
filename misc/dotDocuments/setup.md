@@ -40,9 +40,6 @@ mandoc
 interception-caps2esc
 entr
 
-## Other Stuff to install:
-yt-dlp
-
 ## setting up symlink vi that points to nvim
 ```
 sudo ln -s /usr/bin/nvim /usr/bin/vi
