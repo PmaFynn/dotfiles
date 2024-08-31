@@ -177,7 +177,7 @@ getLinks() {
 
 getFromJson() {
     # Ask what the user wants to do
-    echo "Do you want to: [w]atch the video, [d]ownload the audio, or [v]ideo download?"
+    echo "Do you want to: [w]atch the video, download the [a]udio, or [v]ideo download?"
     read -k1 action
     echo
 
@@ -186,7 +186,7 @@ getFromJson() {
         w)
             yt_dlp_command="mpv"
             ;;
-        d)
+        a)
             cd ~/media/music/misc/
             yt_dlp_command="yt-dlp --extract-audio --audio-format mp3"
             ;;
@@ -221,7 +221,7 @@ getFromJson() {
 
 
 
-# find music fast
+# find local music fast
 mss() {
   fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
 mpv "$file"; done
@@ -250,12 +250,12 @@ alias phi="ollama run phi3:medium"
 alias llama="ollama run llama3.1:latest"
 
 #yt
-alias yt="ytfzf"
+alias yt="cd /home/fynn/media/tmp/ && ytfzf"
 
 #yt-dlp
 alias getAudio="yt-dlp --extract-audio --audio-format mp3"
-alias getMovie="yt-dlp -o /home/fynn/media/videos/movies/"
-alias getVideo="yt-dlp -o /home/fynn/media/videos/"
+alias getMovie="cd /home/fynn/media/videos/movies/ && yt-dlp"
+alias getVideo="cd /home/fynn/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-output-format webm -o \"%(title)s.%(ext)s\""
 
 
 
