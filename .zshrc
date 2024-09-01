@@ -157,7 +157,7 @@ getLinks() {
     fi
     
     # Set the default directory
-    SAVE_DIR=~/media/playlistsAsTxt/
+    SAVE_DIR=~/media/playlistsAsJson/
     
     # Create the directory if it doesn't exist
     mkdir -p "$SAVE_DIR"
