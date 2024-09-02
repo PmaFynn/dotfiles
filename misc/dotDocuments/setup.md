@@ -3,6 +3,7 @@
 ## Packages to install
 alacritty
 bat
+cal
 gnome-screenshot
 zip
 ytfzf
