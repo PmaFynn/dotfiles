@@ -254,7 +254,8 @@ alias yt="cd /home/fynn/media/tmp/ && ytfzf"
 
 #yt-dlp
 alias getAudio="yt-dlp --extract-audio --audio-format mp3"
-alias getMovie="cd /home/fynn/media/videos/movies/ && yt-dlp"
+# alias getMovie="cd /home/fynn/media/videos/movies/ && yt-dlp"
+alias getMovie="cd /home/fynn/media/videos/movies/ && yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o \"%(title)s.%(ext)s\""
 alias getVideo="cd /home/fynn/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-output-format webm -o \"%(title)s.%(ext)s\""
 
 
