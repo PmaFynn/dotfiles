@@ -192,7 +192,7 @@ getFromJson() {
             ;;
         v)
             cd ~/media/videos/misc/
-            yt_dlp_command="yt-dlp"
+            yt_dlp_command="yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o \"%(title)s.%(ext)s\""
             ;;
         *)
             echo "Invalid option selected"
@@ -238,6 +238,10 @@ rmsl() {
   done
 }
 
+# requires ntfs-3g on linux
+#   -> sudo pacman -S ntfs-3g
+# expects [/dev/sdX1] [/mnt/usb]
+alias mountDisk="sudo mount -t ntfs-3g"
 
 alias usb="lsblk"
 
