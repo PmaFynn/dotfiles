@@ -258,11 +258,15 @@ alias getMovie="cd /home/fynn/media/videos/movies/ && yt-dlp"
 alias getVideo="cd /home/fynn/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-output-format webm -o \"%(title)s.%(ext)s\""
 
 
+alias cale="khal calendar"
+
+# expects [datetime] [summary]
+alias addBday="khal new -g bday -r yearly"
 
 alias ls="exa"
 
 #docker
-alias dockerdesk="systemctl --user start docker-desktop"
+#alias dockerdesk="systemctl --user start docker-desktop"
 
 # # >>> conda initialize >>>
 # # !! Contents within this block are managed by 'conda init' !!
