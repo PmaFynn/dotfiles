@@ -114,7 +114,7 @@ alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
 alias install="sudo pacman -S"
 alias remove="sudo pacman -Rn"
 
-alias upFire="cd /home/fynn/.mozilla/firefox/rv4kxhz8.arkenfox/ && bash updater.sh -s"
+alias upFire="cd ~/.mozilla/firefox/rv4kxhz8.arkenfox/ && bash updater.sh -s"
 
 
 #shutdown // reboot
@@ -126,18 +126,18 @@ alias ..="cd .."
 alias ...="cd ../.."
 
 #nvim config
-alias cf="cd /home/fynn/.config"
+alias cf="cd ~/.config"
 
 #fetch merge with upstream
 alias pullup="git fetch upstream && git checkout master && git merge upstream/master"
 
-alias cleanImages="mv /home/fynn/*.png /home/fynn/images/screenshots/"
+alias cleanImages="mv ~/*.png /home/fynn/images/screenshots/"
 
 #activate ds enviornment
 # alias initConda="cd && source anaconda3/bin/activate"
 # alias aag="initConda && conda activate aag && cd ~/misc/uni/2semester/dsAAG/aag-project"
 # alias ds="cd misc/uni/2semester/dsAAG/report"
-alias papers="cd /home/fynn/misc/ambidex/papers/ && yazi"
+alias papers="cd ~/misc/ambidex/papers/ && yazi"
 
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -224,17 +224,17 @@ getFromJson() {
 # find local music fast
 mss() {
   fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
-mpv "$file"; done
+mpv --no-audio-display "$file"; done
 }
 
 # play random song fast
 rms() {
-  fd -e mp3 -t f -0 | shuf -z -n 1 | xargs -0 mpv
+  fd -e mp3 -t f -0 | shuf -z -n 1 | xargs -0 mpv --no-audio-display
 }
 
 rmsl() {
   while true; do
-    fd -e mp3 -t f -0 | shuf -z -n 1 | xargs -0 mpv
+    fd -e mp3 -t f -0 | shuf -z -n 1 | xargs -0 mpv --no-audio-display
   done
 }
 
@@ -254,14 +254,13 @@ alias phi="ollama run phi3:medium"
 alias llama="ollama run llama3.1:latest"
 
 #yt
-alias yt="cd /home/fynn/media/tmp/ && ytfzf"
+alias yt="cd ~/media/tmp/ && ytfzf"
 
 #yt-dlp
 # alias getAudio="yt-dlp -x --extract-audio --embed-thumbnail --audio-format AAC --audio-quality high -o \"%(title)s.%(ext)s\""
-alias getAudio="yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high --add-metadata --embed-metadata --parse-metadata \"uploader:%(artist)s\" -o \"%(title)s.%(ext)s\""
-# alias getMovie="cd /home/fynn/media/videos/movies/ && yt-dlp"
-alias getMovie="cd /home/fynn/media/videos/movies/ && yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o \"%(title)s.%(ext)s\""
-alias getVideo="cd /home/fynn/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-output-format webm -o \"%(title)s.%(ext)s\""
+alias getAudio="mkdir -p ~/media/music && cd ~/media/music && yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high --add-metadata --embed-metadata --parse-metadata \"uploader:%(artist)s\" -o \"%(title)s.%(ext)s\""
+alias getMovie="cd ~/media/videos/movies/ && yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o \"%(title)s.%(ext)s\""
+alias getVideo="cd ~/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-output-format webm -o \"%(title)s.%(ext)s\""
 
 
 alias cale="khal calendar"
