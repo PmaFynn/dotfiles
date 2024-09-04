@@ -257,7 +257,8 @@ alias llama="ollama run llama3.1:latest"
 alias yt="cd /home/fynn/media/tmp/ && ytfzf"
 
 #yt-dlp
-alias getAudio="yt-dlp --extract-audio --audio-format mp3"
+# alias getAudio="yt-dlp -x --extract-audio --embed-thumbnail --audio-format AAC --audio-quality high -o \"%(title)s.%(ext)s\""
+alias getAudio="yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high --add-metadata --embed-metadata --parse-metadata \"uploader:%(artist)s\" -o \"%(title)s.%(ext)s\""
 # alias getMovie="cd /home/fynn/media/videos/movies/ && yt-dlp"
 alias getMovie="cd /home/fynn/media/videos/movies/ && yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o \"%(title)s.%(ext)s\""
 alias getVideo="cd /home/fynn/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-output-format webm -o \"%(title)s.%(ext)s\""
