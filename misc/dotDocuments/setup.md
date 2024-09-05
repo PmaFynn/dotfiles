@@ -19,6 +19,7 @@ pavucontrol
 picom
 stow
 ttf-hack-nerd
+fdupes
 i3 
 dmenu
 wget
@@ -115,4 +116,19 @@ xdg-mime default org.pwmt.zathura.desktop application/pdf
 ## Install all nerfonts 
 ```
 sudo pacman -S $(pacman -Sgq nerd-fonts)
+```
+
+## get music (or vidoes) to phone
+1. install vlc
+2. activate "Sharing via Wi-Fi"
+3. open localost (or whatever host is written there)
+4. upload files
+
+## mount harddisk:
+```
+sudo pacman -S ntfs-3g
+lsblk
+# expects [/dev/sdX1] [/mnt/usb]
+# example: sudo mount -t ntfs-3g /dev/sda1 /mnt/usb
+sudo mount -t ntfs-3g
 ```

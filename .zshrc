@@ -257,8 +257,44 @@ alias llama="ollama run llama3.1:latest"
 alias yt="cd ~/media/tmp/ && ytfzf"
 
 #yt-dlp
+
+getAudioToDynamicDir() {
+    # Check if a URL was provided
+    if [ -z "$1" ]; then
+        echo "Usage: getAudio <URL>"
+        exit 1
+    fi
+
+    # Capture the URL passed as an argument
+    url=$1
+
+    # Get the current date in YYYY-MM-DD format
+    current_date=$(date +"%Y-%m-%d")
+
+    # Define the target directory within ~/media/music
+    target_dir="$HOME/media/music/$current_date"
+
+    # Create the target directory if it doesn't exist
+    mkdir -p "$target_dir"
+
+    # Change to the target directory, or exit with an error message
+    cd "$target_dir" || { echo "Failed to change directory to $target_dir"; exit 1; }
+
+    # Check if yt-dlp is installed
+    if ! command -v yt-dlp &> /dev/null; then
+        echo "yt-dlp could not be found"
+        exit 1
+    fi
+
+    # Run yt-dlp command to download audio from the provided URL
+    yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high \
+           --add-metadata --embed-metadata --parse-metadata "uploader:%(artist)s" \
+           -o "%(title)s.%(ext)s" "$url"
+}
+
 # alias getAudio="yt-dlp -x --extract-audio --embed-thumbnail --audio-format AAC --audio-quality high -o \"%(title)s.%(ext)s\""
-alias getAudio="mkdir -p ~/media/music && cd ~/media/music && yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high --add-metadata --embed-metadata --parse-metadata \"uploader:%(artist)s\" -o \"%(title)s.%(ext)s\""
+alias getAudioCustom="yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high --add-metadata --embed-metadata --parse-metadata \"uploader:%(artist)s\" -o \"%(title)s.%(ext)s\""
+# alias getAudio="mkdir -p ~/media/music && cd ~/media/music && yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high --add-metadata --embed-metadata --parse-metadata \"uploader:%(artist)s\" -o \"%(title)s.%(ext)s\""
 alias getMovie="cd ~/media/videos/movies/ && yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o \"%(title)s.%(ext)s\""
 alias getVideo="cd ~/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-output-format webm -o \"%(title)s.%(ext)s\""
 
@@ -267,6 +303,8 @@ alias cale="khal calendar"
 
 # expects [datetime] [summary]
 alias addBday="khal new -g bday -r yearly"
+# next 5 bdays
+alias bday="khal search bday | head -5"
 
 alias ls="exa"
 
