@@ -250,6 +250,7 @@ alias pwi="pass insert"
 
 # LLMs
 alias gemma="ollama run gemma2:27b"
+alias yiCode="ollama run yi-coder"
 alias phi="ollama run phi3:medium"
 alias llama="ollama run llama3.1:latest"
 
