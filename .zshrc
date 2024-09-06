@@ -108,7 +108,8 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # apt package mangager aliases:
-alias init="sudo pacman -Syu"
+
+alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list"
 alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
 
 alias install="sudo pacman -S"
@@ -187,10 +188,12 @@ getFromJson() {
             yt_dlp_command="mpv"
             ;;
         a)
+            mkdir ~/media/videos/misc/
             cd ~/media/music/misc/
             yt_dlp_command="yt-dlp --extract-audio --audio-format mp3"
             ;;
         v)
+            mkdir ~/media/videos/misc/
             cd ~/media/videos/misc/
             yt_dlp_command="yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o \"%(title)s.%(ext)s\""
             ;;
@@ -225,6 +228,45 @@ getFromJson() {
 mss() {
   fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
 mpv --no-audio-display "$file"; done
+}
+wl() {
+    # Ask what the user wants to do
+    echo "Do you want to: [w]atch the video or [d]ownload it?"
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        w)
+            yt_dlp_command="mpv"
+            ;;
+        d)
+            mkdir ~/media/videos/watchLater
+            cd ~/media/videos/watchLater
+            yt_dlp_command="yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o \"%(title)s.%(ext)s\""
+            ;;
+        *)
+            echo "Invalid option selected"
+            return 1
+            ;;
+    esac
+    # Use fzf to find a title in the JSON files
+    selected=$(jq -r '.[] | .title' ~/media/playlistsAsJson/watchLater.json | fzf --reverse --prompt="Search for a video: ")
+
+    if [ -z "$selected" ]; then
+        echo "No selection made."
+        return 1
+    fi
+
+    # Get the corresponding URL
+    url=$(jq -r --arg title "$selected" '.[] | select(.title == $title) | .url' ~/media/playlistsAsJson/*.json)
+
+    if [ -z "$url" ]; then
+        echo "No URL found for the selected title."
+        return 1
+    fi
+
+    eval "$yt_dlp_command \"$url\""
 }
 
 # play random song fast
@@ -289,12 +331,12 @@ getAudioToDynamicDir() {
 
     # Run yt-dlp command to download audio from the provided URL
     yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high \
-           --add-metadata --embed-metadata --parse-metadata "uploader:%(artist)s" \
+           --add-metadata --embed-metadata --parse-metadata "%(uploader)s:%(meta_artist)s" \
            -o "%(title)s.%(ext)s" "$url"
 }
 
 # alias getAudio="yt-dlp -x --extract-audio --embed-thumbnail --audio-format AAC --audio-quality high -o \"%(title)s.%(ext)s\""
-alias getAudioCustom="yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high --add-metadata --embed-metadata --parse-metadata \"uploader:%(artist)s\" -o \"%(title)s.%(ext)s\""
+alias getAudioCustom="yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high --add-metadata --embed-metadata --parse-metadata \"%(uploader)s:%(meta_artist)s\" -o \"%(title)s.%(ext)s\""
 # alias getAudio="mkdir -p ~/media/music && cd ~/media/music && yt-dlp -x --extract-audio --embed-thumbnail --audio-format mp3 --audio-quality high --add-metadata --embed-metadata --parse-metadata \"uploader:%(artist)s\" -o \"%(title)s.%(ext)s\""
 alias getMovie="cd ~/media/videos/movies/ && yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -o \"%(title)s.%(ext)s\""
 alias getVideo="cd ~/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-output-format webm -o \"%(title)s.%(ext)s\""
@@ -302,10 +344,12 @@ alias getVideo="cd ~/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-outp
 
 alias cale="khal calendar"
 
+alias bday="khal search bday | head -5"
+alias cal="cal -m"
+
 # expects [datetime] [summary]
 alias addBday="khal new -g bday -r yearly"
 # next 5 bdays
-alias bday="khal search bday | head -5"
 
 alias ls="exa"
 
