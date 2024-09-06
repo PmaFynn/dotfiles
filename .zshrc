@@ -223,10 +223,26 @@ getFromJson() {
 }
 
 
+mssf() {
+    # Define the target directory within ~/media/music
+    target_dir="$HOME/media/music/favs/"
+
+    # Create the target directory if it doesn't exist
+    mkdir -p "$target_dir"
+    fd --type f --extension mp3 --extension m4a --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
+    mv "$file" "$target_dir"
+    done
+}
+
+favs() {
+  while true; do
+    fd -e mp3 -e m4a -t f -0 . $HOME/media/music/favs/ | shuf -z -n 1 | xargs -0 mpv --no-audio-display
+  done
+}
 
 # find local music fast
 mss() {
-  fd --type f --extension mp3 --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
+  fd --type f -e mp3 -e m4a --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
     mpv --no-audio-display "$file"
   done
 }

@@ -134,15 +134,22 @@ sudo mount -t ntfs-3g
 ```
 
 ## best script for yt-dlp
-https://github.com/TheFrenchGhosty/TheFrenchGhostys-Ultimate-YouTube-DL-Scripts-Collection/
-### Instalation:
-1. download tar.gz
-2. extract
-3. move the main folders (i.e. Archivist Scripts, Audio-Only Scritps, etc.) to the desired location
-4. make the .sh scripts executeable (chmod +x filename.sh)
-5. potentially modifiy sh scripts to use 'better' title for the output (subjective)
-6. insert source (yt link) to source.txt file and execute batch file
-7. ???
-8. profit
-
-
+https://github.com/PmaFynn/yt-dlp-scripts:
+### prep
+1. git clone that shit
+2. set up .gitignore:
+```
+*.txt
+*.m4a
+*.opus
+*.describtion
+*.json
+*.webp
+*.webm
+*.mkv
+*.log
+```
+### usage
+1. potentially make .sh script executable
+2. insert source (yt link) into source.txt 
+3. execute .sh file
