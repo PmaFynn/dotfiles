@@ -150,11 +150,17 @@ function yy() {
 }
 alias svi="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | xargs vi"
 
-#gets title and links of a yt playlist into a json file
 getLinks() {
-    if [[ -z "$1" || -z "$2" ]]; then
-        echo "Usage: getLinks <playlist_url> <nameOfJsonFile>"
+    if [[ -z "$1" ]]; then
+        echo "Usage: getLinks <playlist_url> [<nameOfJsonFile>]"
         return 1
+    fi
+
+    # If the second argument (filename) is not provided, use 'watchLater.json'
+    if [[ -z "$2" ]]; then
+        FILENAME="watchLater"
+    else
+        FILENAME="$2"
     fi
     
     # Set the default directory
@@ -164,11 +170,29 @@ getLinks() {
     mkdir -p "$SAVE_DIR"
     
     # Set the output file path
-    OUTPUT_FILE="${SAVE_DIR}${2}.json"
+    OUTPUT_FILE="${SAVE_DIR}${FILENAME}.json"
     
-    # Run yt-dlp and save to the specified file
-    yt-dlp -j --flat-playlist "$1" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id)}]' > "$OUTPUT_FILE"
-    
+    # Create a temporary file for the new data
+    TEMP_FILE=$(mktemp)
+
+    # Run yt-dlp and save new data to the temporary file
+    yt-dlp -j --flat-playlist "$1" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id)}]' > "$TEMP_FILE"
+
+    if [[ $? -ne 0 ]]; then
+        echo "An error occurred."
+        rm "$TEMP_FILE"  # Clean up the temporary file
+        return 1
+    fi
+
+    # Check if the JSON file already exists
+    if [[ -f "$OUTPUT_FILE" ]]; then
+        # If it exists, merge the new data with the existing data
+        jq -s '.[0] + .[1]' "$OUTPUT_FILE" "$TEMP_FILE" > "${OUTPUT_FILE}.tmp" && mv "${OUTPUT_FILE}.tmp" "$OUTPUT_FILE"
+    else
+        # If the file doesn't exist, simply move the temp file to the output file
+        mv "$TEMP_FILE" "$OUTPUT_FILE"
+    fi
+
     if [[ $? -eq 0 ]]; then
         echo "Playlist links saved to $OUTPUT_FILE"
     else
@@ -276,7 +300,7 @@ wl() {
     fi
 
     # Get the corresponding URL
-    url=$(jq -r --arg title "$selected" '.[] | select(.title == $title) | .url' ~/media/playlistsAsJson/*.json)
+    url=$(jq -r --arg title "$selected" '.[] | select(.title == $title) | .url' ~/media/playlistsAsJson/watchLater.json)
 
     if [ -z "$url" ]; then
         echo "No URL found for the selected title."
