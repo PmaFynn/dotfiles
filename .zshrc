@@ -109,13 +109,11 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # apt package mangager aliases:
 
-alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list"
+alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"----------------------------\" && echo \"\"help\" for searchable list of functions and aliases\""
 alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
 
 alias install="sudo pacman -S"
 alias remove="sudo pacman -Rn"
-
-alias upFire="cd ~/.mozilla/firefox/rv4kxhz8.arkenfox/ && bash updater.sh -s"
 
 
 #shutdown // reboot
@@ -132,13 +130,10 @@ alias cf="cd ~/.config"
 #fetch merge with upstream
 alias pullup="git fetch upstream && git checkout master && git merge upstream/master"
 
-alias cleanImages="mv ~/*.png /home/fynn/images/screenshots/"
-
 #activate ds enviornment
 # alias initConda="cd && source anaconda3/bin/activate"
 # alias aag="initConda && conda activate aag && cd ~/misc/uni/2semester/dsAAG/aag-project"
 # alias ds="cd misc/uni/2semester/dsAAG/report"
-alias papers="cd ~/misc/ambidex/papers/ && yazi"
 
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -391,6 +386,27 @@ alias cal="cal -m"
 # expects [datetime] [summary]
 alias addBday="khal new -g bday -r yearly"
 # next 5 bdays
+
+helpStatic() {
+    echo "
+    cale -> khal calendar -> calendar \n
+    bday -> displays next birthdays -> calendar \n
+    getLinks -> takes a yt link as argument and adds it either to watch later json file if no second argument is given or to the second argument -> \"getLinks ytLink name\" -> name.json -> media \n
+    wl -> search through watch Later playlist -> media \n
+    yt -> opens youtube cli -> media \n
+    getFromJson -> searches through all playlists of mine -> media \n
+    mss -> searches for music -> media \n
+    rmsl -> plays random music on loop -> media \n
+    mssf -> search music to add selected to favourites -> media \n
+    favs -> plays favourites on shuffle -> media \n
+    usb -> lsblk -> misc \n
+    mountDisk -> to mount Harddrive: expects [/dev/sdX1] [/mnt/usb] -> misc \n
+    pullup -> sync fork <- actually maybe just use github website -> misc \n
+    yy -> opens yazi file manager -> misc \n
+    "
+}
+
+alias help="helpStatic | fzf --reverse"
 
 alias ls="exa"
 
