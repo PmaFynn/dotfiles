@@ -226,8 +226,9 @@ getFromJson() {
 
 # find local music fast
 mss() {
-  fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
-mpv --no-audio-display "$file"; done
+  fd --type f --extension mp3 --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
+    mpv --no-audio-display "$file"
+  done
 }
 wl() {
     # Ask what the user wants to do
