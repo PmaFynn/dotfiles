@@ -1,1 +1,9 @@
 vim bindings
+Extension: uBlock origin
+Extension: SponsorBlock for Youtube
+Extension: I still don't care about cookies
+Libre Software
+bash scripting
+*more packages here*
+Wikipedia
+Unix Philosophy

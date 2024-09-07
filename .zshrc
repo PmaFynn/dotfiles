@@ -109,7 +109,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # apt package mangager aliases:
 
-alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"----------------------------\" && echo \"\"help\" for searchable list of functions and aliases\""
+alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"---------------------------- \n *help* for searchable list of functions and aliases\""  
 alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
 
 alias install="sudo pacman -S"
@@ -171,7 +171,7 @@ getLinks() {
     TEMP_FILE=$(mktemp)
 
     # Run yt-dlp and save new data to the temporary file
-    yt-dlp -j --flat-playlist "$1" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id)}]' > "$TEMP_FILE"
+    yt-dlp -j --flat-playlist --dateafter now-30days "$1" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id)}]' > "$TEMP_FILE"
 
     if [[ $? -ne 0 ]]; then
         echo "An error occurred."
@@ -194,6 +194,178 @@ getLinks() {
         echo "An error occurred."
     fi
 }
+#!/bin/bash
+
+getLinksFromChannels() {
+    # File containing the list of YouTube channel links
+    CHANNELS_FILE="$1"
+
+    # Set the default directory for saving JSON files
+    SAVE_DIR=~/media/channelsAsJson/
+
+    DATE_AFTER=$(date -d "100 days ago" +"%Y%m%d")
+    
+    # Create the directory if it doesn't exist
+    mkdir -p "$SAVE_DIR"
+
+    # Read each line (channel link) from the provided text file
+    while IFS= read -r CHANNEL_URL; do
+        if [[ -n "$CHANNEL_URL" ]]; then
+            echo "Processing $CHANNEL_URL..."
+
+            # Create a temporary file for new data
+            TEMP_FILE=$(mktemp)
+
+            # Scrape the video info from the channel using yt-dlp
+            yt-dlp -j --flat-playlist "$CHANNEL_URL" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id), uploader: .uploader}]' > "$TEMP_FILE"
+
+            if [[ $? -ne 0 ]]; then
+                echo "An error occurred while processing $CHANNEL_URL"
+                rm "$TEMP_FILE"  # Clean up temporary file
+                continue
+            fi
+
+            # Extract the uploader's name from the first video entry to name the JSON file
+            UPLOADER_NAME=$(jq -r '.[0].uploader' "$TEMP_FILE" | tr -d '[:space:]')
+            
+            if [[ -z "$UPLOADER_NAME" ]]; then
+                echo "Could not retrieve uploader name for $CHANNEL_URL"
+                rm "$TEMP_FILE"
+                continue
+            fi
+
+            # Set the output JSON file path
+            OUTPUT_FILE="${SAVE_DIR}${UPLOADER_NAME}.json"
+
+            # Check if the JSON file for this uploader already exists
+            if [[ -f "$OUTPUT_FILE" ]]; then
+                # Merge the new data with the existing JSON file
+                jq -s '.[0] + .[1]' "$OUTPUT_FILE" "$TEMP_FILE" > "${OUTPUT_FILE}.tmp" && mv "${OUTPUT_FILE}.tmp" "$OUTPUT_FILE"
+            else
+                # If the file doesn't exist, simply move the temp file to the output file
+                mv "$TEMP_FILE" "$OUTPUT_FILE"
+            fi
+
+            if [[ $? -eq 0 ]]; then
+                echo "Links from $CHANNEL_URL saved to $OUTPUT_FILE"
+            else
+                echo "An error occurred while saving $OUTPUT_FILE"
+            fi
+
+        fi
+    done < "$CHANNELS_FILE"
+}
+
+
+
+subs() {
+    #TODO: should save dateTime of the last run
+    #TODO: only scrape videos after this date
+    # File containing the list of YouTube channel links
+    CHANNELS_FILE="$HOME/media/videos/subs/Source - subs.txt"
+
+    # Set the default directory for saving JSON files
+    SAVE_DIR="$HOME/media/videos/subs/"
+
+    # Create the directory if it doesn't exist
+    mkdir -p "$SAVE_DIR"
+
+    # Calculate the date of 100 days ago in YYYYMMDD format
+    DATE_AFTER=$(date -d "100 days ago" +"%Y%m%d")
+
+    # Read each line (channel link) from the provided text file
+    while IFS= read -r CHANNEL_URL; do
+        if [[ -n "$CHANNEL_URL" ]]; then
+            echo "Processing $CHANNEL_URL..."
+
+            # Create a temporary file for new data
+            TEMP_FILE=$(mktemp)
+
+            # Scrape the video info from the channel using yt-dlp
+yt-dlp -j --dateafter "$(date --date=\"30 days ago\" +%Y%m%d)" "$CHANNEL_URL" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id), uploader: .channel}]' > "$TEMP_FILE"
+
+            if [[ $? -ne 0 ]]; then
+                echo "An error occurred while processing $CHANNEL_URL"
+                rm "$TEMP_FILE"  # Clean up temporary file
+                continue
+            fi
+
+            # Extract the uploader's name from the first video entry to name the JSON file
+            UPLOADER_NAME=$(jq -r '.[0].uploader' "$TEMP_FILE" | tr -d '[:space:]')
+            
+            if [[ -z "$UPLOADER_NAME" ]]; then
+                echo "Could not retrieve uploader name for $CHANNEL_URL"
+                rm "$TEMP_FILE"
+                continue
+            fi
+
+            channel_name=$(echo "$CHANNEL_URL" | cut -d'@' -f2)
+            echo "Channel Name: $channel_name"
+
+            # Set the output JSON file path
+            #FIX: should just be set once
+            OUTPUT_FILE="${SAVE_DIR}${channel_name}.json"
+
+            # Check if the JSON file for this uploader already exists
+            if [[ -f "$OUTPUT_FILE" ]]; then
+                # Merge the new data with the existing JSON file
+                jq -s '.[0] + .[1]' "$OUTPUT_FILE" "$TEMP_FILE" > "${OUTPUT_FILE}.tmp" && mv "${OUTPUT_FILE}.tmp" "$OUTPUT_FILE"
+            else
+                # If the file doesn't exist, simply move the temp file to the output file
+                mv "$TEMP_FILE" "$OUTPUT_FILE"
+            fi
+
+            if [[ $? -eq 0 ]]; then
+                echo "Links from $CHANNEL_URL saved to $OUTPUT_FILE"
+            else
+                echo "An error occurred while saving $OUTPUT_FILE"
+            fi
+
+        fi
+    done < "$CHANNELS_FILE"
+}
+
+# subs() {
+#
+#     #TODO: has to be the uploader metadata
+#     FILENAME="tbd"
+#
+#     # Set the default directory
+#     BASE_SAVE_DIR=$HOME/media/videos/subs/
+#
+#     # Create the directory if it doesn't exist
+#     mkdir -p "$BASE_SAVE_DIR"
+#
+#     # Set the output file path
+#     OUTPUT_FILE="${SAVE_DIR}${FILENAME}.json"
+#
+#     # Create a temporary file for the new data
+#     TEMP_FILE=$(mktemp)
+#
+#     # Run yt-dlp and save new data to the temporary file
+#     yt-dlp -j --flat-playlist "$1" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id)}]' > "$TEMP_FILE"
+#
+#     if [[ $? -ne 0 ]]; then
+#         echo "An error occurred."
+#         rm "$TEMP_FILE"  # Clean up the temporary file
+#         return 1
+#     fi
+#
+#     # Check if the JSON file already exists
+#     if [[ -f "$OUTPUT_FILE" ]]; then
+#         # If it exists, merge the new data with the existing data
+#         jq -s '.[0] + .[1]' "$OUTPUT_FILE" "$TEMP_FILE" > "${OUTPUT_FILE}.tmp" && mv "${OUTPUT_FILE}.tmp" "$OUTPUT_FILE"
+#     else
+#         # If the file doesn't exist, simply move the temp file to the output file
+#         mv "$TEMP_FILE" "$OUTPUT_FILE"
+#     fi
+#
+#     if [[ $? -eq 0 ]]; then
+#         echo "Playlist links saved to $OUTPUT_FILE"
+#     else
+#         echo "An error occurred."
+#     fi
+# }
 
 getFromJson() {
     # Ask what the user wants to do
@@ -248,7 +420,7 @@ mssf() {
 
     # Create the target directory if it doesn't exist
     mkdir -p "$target_dir"
-    fd --type f --extension mp3 --extension m4a --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
+    fd --type f --extension mp3 --extension m4a --hidden | fzf --reverse --preview 'bat {1}' | while read -r file; do
     mv "$file" "$target_dir"
     done
 }
@@ -261,7 +433,9 @@ favs() {
 
 # find local music fast
 mss() {
-  fd --type f -e mp3 -e m4a --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | while read -r file; do
+    # Define the target directory within ~/media/music
+    target_dir="$HOME/media/"
+  fd --type f -e mp3 -e m4a -I --hidden --exclude .git . $target_dir | fzf --reverse --preview 'bat {1}' | while read -r file; do
     mpv --no-audio-display "$file"
   done
 }
