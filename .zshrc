@@ -194,69 +194,6 @@ getLinks() {
         echo "An error occurred."
     fi
 }
-#!/bin/bash
-
-getLinksFromChannels() {
-    # File containing the list of YouTube channel links
-    CHANNELS_FILE="$1"
-
-    # Set the default directory for saving JSON files
-    SAVE_DIR=~/media/channelsAsJson/
-
-    DATE_AFTER=$(date -d "100 days ago" +"%Y%m%d")
-    
-    # Create the directory if it doesn't exist
-    mkdir -p "$SAVE_DIR"
-
-    # Read each line (channel link) from the provided text file
-    while IFS= read -r CHANNEL_URL; do
-        if [[ -n "$CHANNEL_URL" ]]; then
-            echo "Processing $CHANNEL_URL..."
-
-            # Create a temporary file for new data
-            TEMP_FILE=$(mktemp)
-
-            # Scrape the video info from the channel using yt-dlp
-            yt-dlp -j --flat-playlist "$CHANNEL_URL" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id), uploader: .uploader}]' > "$TEMP_FILE"
-
-            if [[ $? -ne 0 ]]; then
-                echo "An error occurred while processing $CHANNEL_URL"
-                rm "$TEMP_FILE"  # Clean up temporary file
-                continue
-            fi
-
-            # Extract the uploader's name from the first video entry to name the JSON file
-            UPLOADER_NAME=$(jq -r '.[0].uploader' "$TEMP_FILE" | tr -d '[:space:]')
-            
-            if [[ -z "$UPLOADER_NAME" ]]; then
-                echo "Could not retrieve uploader name for $CHANNEL_URL"
-                rm "$TEMP_FILE"
-                continue
-            fi
-
-            # Set the output JSON file path
-            OUTPUT_FILE="${SAVE_DIR}${UPLOADER_NAME}.json"
-
-            # Check if the JSON file for this uploader already exists
-            if [[ -f "$OUTPUT_FILE" ]]; then
-                # Merge the new data with the existing JSON file
-                jq -s '.[0] + .[1]' "$OUTPUT_FILE" "$TEMP_FILE" > "${OUTPUT_FILE}.tmp" && mv "${OUTPUT_FILE}.tmp" "$OUTPUT_FILE"
-            else
-                # If the file doesn't exist, simply move the temp file to the output file
-                mv "$TEMP_FILE" "$OUTPUT_FILE"
-            fi
-
-            if [[ $? -eq 0 ]]; then
-                echo "Links from $CHANNEL_URL saved to $OUTPUT_FILE"
-            else
-                echo "An error occurred while saving $OUTPUT_FILE"
-            fi
-
-        fi
-    done < "$CHANNELS_FILE"
-}
-
-
 
 subs() {
     #TODO: should save dateTime of the last run
@@ -281,18 +218,22 @@ subs() {
             # Create a temporary file for new data
             TEMP_FILE=$(mktemp)
 
+            # Extract everything after the first '@' in the uploader URL
+            UPLOADER_NAME=$(echo "$CHANNEL_URL" | cut -d'@' -f2)
+
             # Scrape the video info from the channel using yt-dlp
-yt-dlp -j --dateafter "$(date --date=\"30 days ago\" +%Y%m%d)" "$CHANNEL_URL" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id), uploader: .channel}]' > "$TEMP_FILE"
+            # use this -> gets upload date but is slow
+            # yt-dlp --print "title" --print "id" --no-download --print "uploader" --download-archive archive.log --print "upload_date" https://www.youtube.com/@oliSUNvia > newnew.txt
+
+yt-dlp --print "title" --print "id" --print "uploader" --print "upload_date" "$CHANNEL_URL" | jq -r '[{title: .title, url: ("https://www.youtube.com/watch?v=" + .id), uploader: .uploader}]' > "$TEMP_FILE"
 
             if [[ $? -ne 0 ]]; then
                 echo "An error occurred while processing $CHANNEL_URL"
                 rm "$TEMP_FILE"  # Clean up temporary file
                 continue
             fi
-
-            # Extract the uploader's name from the first video entry to name the JSON file
-            UPLOADER_NAME=$(jq -r '.[0].uploader' "$TEMP_FILE" | tr -d '[:space:]')
             
+            echo "$UPLOADER_NAME"
             if [[ -z "$UPLOADER_NAME" ]]; then
                 echo "Could not retrieve uploader name for $CHANNEL_URL"
                 rm "$TEMP_FILE"
