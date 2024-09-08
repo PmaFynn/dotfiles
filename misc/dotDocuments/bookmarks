@@ -11,11 +11,6 @@ gsp	https://de.gegenstandpunkt.com/
 lukesmith	https://lukesmith.xyz/
 cooking	https://based.cooking/
 soccerStreams	https://totalsportek.io/
-python	https://docs.python-guide.org/
-aag	You are now part of our master project seminar on exploratory data science with AAG. You are tasked to write a section in our final report. Your assigned section is called [name]. Pls start your answer from this section in LaTeX (-> /section([name])). Write a scientific report that is approx. [x] pages long.
-ipynb	jupyter nbconvert --to script nameOfFile.ipynb
-pygame	https://www.youtube.com/watch?v=AY9MnQ4x3zk
-pseudoCode	https://livebook.manning.com/book/advanced-algorithms-and-data-structures/a-a-quick-guide-to-pseudo-code/v-3/1
 exams	https://klausurarchiv.fachschaft-wiwi.ms/
 google	scholar.google.com
 md	https://www.markdownguide.org/basic-syntax/
@@ -25,11 +20,12 @@ rustTutorial	https://practice.course.rs/compound-types/intro.html
 rustExamples	https://doc.rust-lang.org/stable/rust-by-example/index.html
 rustBestPrac	https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html
 idiomaticRust	https://github.com/mre/idiomatic-rust
-crossterm	https://docs.rs/crossterm/latest/crossterm/
 awesomeCli	https://github.com/agarrharr/awesome-cli-apps	anthology of cli tools
 hackerNews	https://news.ycombinator.com/
 cat -v	https://harmful.cat-v.org/	funny page -> lot of shit takes
 openSourceTrends	https://github.com/trending
 public domain movies	https://www.imdb.com/list/ls060673364/?sort=user_rating%2Cdesc
 awesomeBash	https://github.com/awesome-lists/awesome-bash
-pirate	https://tpb.party/
+pirate	https://old.reddit.com/r/Piracy/wiki/megathread
+ipcheck	https://mullvad.net/en/check
+1pirate	https://reddit.garudalinux.org/r/Piracy/wiki/megathread

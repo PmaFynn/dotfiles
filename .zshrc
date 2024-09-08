@@ -109,7 +109,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # apt package mangager aliases:
 
-alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"---------------------------- \n *help* for searchable list of functions and aliases\""  
+alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"---------------------------- \n *help* for searchable list of functions and aliases\"&& curl https://am.i.mullvad.net/connected && curl https://am.i.mullvad.net/json"
 alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
 
 alias install="sudo pacman -S"
