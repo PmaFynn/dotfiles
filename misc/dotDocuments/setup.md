@@ -5,6 +5,7 @@ alacritty
 bat
 cal
 gnome-screenshot
+oath-toolkit
 zip
 ytfzf
 yt-dlp
@@ -153,3 +154,10 @@ https://github.com/PmaFynn/yt-dlp-scripts:
 1. potentially make .sh script executable
 2. insert source (yt link) into source.txt 
 3. execute .sh file
+
+## oath-toolkit usage:
+used for TOTP (time-based one time passwords)
+```
+oathtool --totp "YOUR_SECRET_KEY"
+```
+

@@ -1,4 +1,4 @@
-# If you come from bash you might have to change your $PATH.
+# If you come from bash you meght have to change your $PATH.
 # test if read only
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -109,7 +109,33 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # apt package mangager aliases:
 
-alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"---------------------------- \n *help* for searchable list of functions and aliases\"&& curl https://am.i.mullvad.net/connected && curl https://am.i.mullvad.net/json"
+# alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"---------------------------- \n *help* for searchable list of functions and aliases\""
+init() {
+    # Ask what the user wants to do
+    echo "Do you want to: [a]ctivate the vpn and [d]on't?"
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        a)
+            vpnup
+            ;;
+        *)
+            ;;
+    esac
+
+    sudo pacman -Syu 
+    clear 
+    echo "-------------------------------\n"
+    cal
+    echo "-------------------------------\n"
+    khal list
+    echo "-------------------------------\n *help* for searchable list of functions and aliases"
+    echo "-------------------------------\n"
+    curl https://am.i.mullvad.net/json | jq
+}
+alias check="curl https://am.i.mullvad.net/json | jq"
 alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
 
 alias install="sudo pacman -S"
@@ -523,7 +549,24 @@ helpStatic() {
 
 alias help="helpStatic | fzf --reverse"
 
+#TODO: update to maintained fork
 alias ls="exa"
+
+vpnup() {
+    sudo wg-quick up /etc/wireguard/NL-FREE-2076.conf
+    sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+    curl https://am.i.mullvad.net/json | jq
+}
+vpndown() {
+    sudo wg-quick down /etc/wireguard/NL-FREE-2076.conf
+    sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0
+    sudo sysctl -w net.ipv6.conf.default.disable_ipv6=0
+    curl https://am.i.mullvad.net/json | jq
+}
+
+alias uniotp="oathtool --totp b10ada0fe7c9e4443856ceadad78b1caa1b88164"
+
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
