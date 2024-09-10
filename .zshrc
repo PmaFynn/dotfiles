@@ -550,7 +550,7 @@ helpStatic() {
 alias help="helpStatic | fzf --reverse"
 
 #TODO: update to maintained fork
-alias ls="exa"
+alias ls="eza"
 
 vpnup() {
     sudo wg-quick up /etc/wireguard/NL-FREE-2076.conf
