@@ -31,7 +31,7 @@ exec_always --no-startup-id feh --bg-scale images/solarpunkgood.jpg
 exec_always --no-startup-id dropbox start
 
 #setting dpi to 192 on surface 
-exec_always --no-startup-id xrandr --output eDP-1 --dpi 244
+exec_always --no-startup-id xrandr --output HDMI-1 --right-of --output eDP-1 --dpi 244
 
 
 #picom
