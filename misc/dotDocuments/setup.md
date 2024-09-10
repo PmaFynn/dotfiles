@@ -5,6 +5,8 @@ alacritty
 bat
 cal
 gnome-screenshot
+open-resolv
+wireguard-tools
 oath-toolkit
 zip
 ytfzf
