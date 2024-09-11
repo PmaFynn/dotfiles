@@ -1,0 +1,13 @@
+[Unit]
+Description=Rclone Sync with inotifywait
+After=network.target
+
+[Service]
+ExecStart=/bin/bash /home/yourusername/rclone_sync.sh
+Restart=always
+RestartSec=10
+User=fynn
+
+[Install]
+WantedBy=default.target
+
