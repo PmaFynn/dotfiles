@@ -3,11 +3,11 @@ Description=Rclone Sync with inotifywait
 After=network.target
 
 [Service]
-ExecStart=/bin/bash /home/yourusername/rclone_sync.sh
+ExecStart=/bin/bash /home/fynn/mega/scripts/rclone_sync.sh
 Restart=always
 RestartSec=10
-User=fynn
+KillMode=process
+Type=simple
 
 [Install]
 WantedBy=default.target
-

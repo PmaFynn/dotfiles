@@ -160,4 +160,24 @@ used for TOTP (time-based one time passwords)
 ```
 oathtool --totp "YOUR_SECRET_KEY"
 ```
+## setting up rclone (incl. potential systemd job)
+1. 'rclone config'
+2. n
+3. enter name (e.g. mega)
+4. select storage type (i.e. look for mega and use this number)
+5. enter user name (i.e. mega email)
+6. enter password (i.e. mega password)
+7. finish the rest (nothing important -> defaults should work)
+8. test connection with rclone ls name: (i.e. rclone ls mega:)
 
+### setting up automatic syncing from local to remote:
+#### Prerequisites:
+1. sync remote to machine manually once
+2. stowed dotfiles <- this includes the rclone-sync-to-remote.service file
+
+#### Process
+```
+systemctl --user daemon-reload
+systemctl --user restart rclone-sync-to-remote.service
+systemctl --user status rclone-sync-to-remote.service
+```
