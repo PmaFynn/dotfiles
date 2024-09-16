@@ -111,6 +111,8 @@ fi
 
 # alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"---------------------------- \n *help* for searchable list of functions and aliases\""
 init() {
+    sudo pacman -Syu 
+    clear 
     # Ask what the user wants to do
     echo "Do you want to: [a]ctivate the vpn and [d]on't?"
     read -k1 action
@@ -125,8 +127,6 @@ init() {
             ;;
     esac
 
-    sudo pacman -Syu 
-    clear 
     echo "-------------------------------\n"
     cal
     echo "-------------------------------\n"
@@ -134,6 +134,19 @@ init() {
     echo "-------------------------------\n *help* for searchable list of functions and aliases"
     echo "-------------------------------\n"
     curl https://am.i.mullvad.net/json | jq
+
+    echo "Do you want to read your rss feed? [y]es | [n]o" 
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        y)
+            news
+            ;;
+        *)
+            ;;
+    esac
 }
 alias check="curl https://am.i.mullvad.net/json | jq"
 alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
@@ -454,6 +467,12 @@ vpndown() {
 
 alias uniotp="oathtool --totp b10ada0fe7c9e4443856ceadad78b1caa1b88164"
 
+moveMusic() {
+    find $HOME/media/yt-dlp-scripts/ -type f \( -iname "*.mp3" -o -iname "*.m4a" \) -exec mv {} $HOME/media/music/ \;
+}
+
+alias news="newsboat -r"
+alias exportNews="newboat -e > $HOME/mega/dotDocuments/feeds.opml"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
