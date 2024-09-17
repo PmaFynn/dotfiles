@@ -110,44 +110,6 @@ fi
 # apt package mangager aliases:
 
 # alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"---------------------------- \n *help* for searchable list of functions and aliases\""
-init() {
-    sudo pacman -Syu 
-    clear 
-    # Ask what the user wants to do
-    echo "Do you want to: [a]ctivate the vpn and [d]on't?"
-    read -k1 action
-    echo
-
-    # Set the yt-dlp command based on user input
-    case $action in
-        a)
-            vpnup
-            ;;
-        *)
-            ;;
-    esac
-
-    echo "-------------------------------\n"
-    cal
-    echo "-------------------------------\n"
-    khal list
-    echo "-------------------------------\n *help* for searchable list of functions and aliases"
-    echo "-------------------------------\n"
-    curl https://am.i.mullvad.net/json | jq
-
-    echo "Do you want to read your rss feed? [y]es | [n]o" 
-    read -k1 action
-    echo
-
-    # Set the yt-dlp command based on user input
-    case $action in
-        y)
-            news
-            ;;
-        *)
-            ;;
-    esac
-}
 alias check="curl https://am.i.mullvad.net/json | jq"
 alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
 
@@ -473,6 +435,71 @@ moveMusic() {
 
 alias news="newsboat -r"
 alias exportNews="newboat -e > $HOME/mega/dotDocuments/feeds.opml"
+
+init() {
+    sudo pacman -Syu 
+    clear 
+    echo "Do you want to clean up big time? [y]es | [n]o" 
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        y)
+            sudo pacman -Rns $(pacman -Qdtq)
+            ;;
+        *)
+            ;;
+    esac
+    clear
+    # Ask what the user wants to do
+    echo "Do you want to: [a]ctivate the vpn and [d]on't?"
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        a)
+            vpnup
+            ;;
+        *)
+            ;;
+    esac
+
+    echo "-------------------------------\n"
+    cal
+    echo "-------------------------------\n"
+    khal list
+    echo "-------------------------------\n *help* for searchable list of functions and aliases"
+    echo "-------------------------------\n"
+    curl https://am.i.mullvad.net/json | jq
+
+    echo "Do you want to read your rss feed? [y]es | [n]o" 
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        y)
+            news
+            ;;
+        *)
+            ;;
+    esac
+
+    echo "Do you want to turn on music? [y]es | [n]o" 
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        y)
+            rmsl
+            ;;
+        *)
+            ;;
+    esac
+}
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
