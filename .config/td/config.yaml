@@ -2,4 +2,7 @@ root: "mega/.todo_app/"
 file:
     default: "main.txt"
     uni:  "uni.txt"
+    projects: "projects.txt"
+    media: "media.txt"
+    td: "td.txt"
 

@@ -64,7 +64,8 @@ tiling_drag modifier titlebar
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty 
+# bindsym $mod+Return exec alacritty 
+bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+c kill
 
@@ -217,8 +218,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #Borders
-gaps inner 5
-gaps outer 3
+gaps inner 0
+gaps outer 0
 
 # Remove borders
 for_window [class=".*"] border pixel 5
