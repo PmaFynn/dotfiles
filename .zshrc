@@ -110,31 +110,6 @@ fi
 # apt package mangager aliases:
 
 # alias init="sudo pacman -Syu && clear && echo \"----------------------------\" && cal && echo \"----------------------------\" && khal list && echo \"---------------------------- \n *help* for searchable list of functions and aliases\""
-init() {
-    # Ask what the user wants to do
-    echo "Do you want to: [a]ctivate the vpn and [d]on't?"
-    read -k1 action
-    echo
-
-    # Set the yt-dlp command based on user input
-    case $action in
-        a)
-            vpnup
-            ;;
-        *)
-            ;;
-    esac
-
-    sudo pacman -Syu 
-    clear 
-    echo "-------------------------------\n"
-    cal
-    echo "-------------------------------\n"
-    khal list
-    echo "-------------------------------\n *help* for searchable list of functions and aliases"
-    echo "-------------------------------\n"
-    curl https://am.i.mullvad.net/json | jq
-}
 alias check="curl https://am.i.mullvad.net/json | jq"
 alias initFull="sudo pacman -Syu && sudo pacman -Rns $(pacman -Qdtq)"
 
@@ -220,119 +195,6 @@ getLinks() {
         echo "An error occurred."
     fi
 }
-
-subs() {
-    #TODO: should save dateTime of the last run
-    #TODO: only scrape videos after this date
-    # File containing the list of YouTube channel links
-    CHANNELS_FILE="$HOME/media/videos/subs/Source - subs.txt"
-
-    # Set the default directory for saving JSON files
-    SAVE_DIR="$HOME/media/videos/subs/"
-
-    # Create the directory if it doesn't exist
-    mkdir -p "$SAVE_DIR"
-
-    # Calculate the date of 100 days ago in YYYYMMDD format
-    DATE_AFTER=$(date -d "100 days ago" +"%Y%m%d")
-
-    # Read each line (channel link) from the provided text file
-    while IFS= read -r CHANNEL_URL; do
-        if [[ -n "$CHANNEL_URL" ]]; then
-            echo "Processing $CHANNEL_URL..."
-
-            # Create a temporary file for new data
-            TEMP_FILE=$(mktemp)
-
-            # Extract everything after the first '@' in the uploader URL
-            UPLOADER_NAME=$(echo "$CHANNEL_URL" | cut -d'@' -f2)
-
-            # Scrape the video info from the channel using yt-dlp
-            # use this -> gets upload date but is slow
-            # yt-dlp --print "title" --print "id" --no-download --print "uploader" --download-archive archive.log --print "upload_date" https://www.youtube.com/@oliSUNvia > newnew.txt
-
-yt-dlp --print "title" --print "id" --print "uploader" --print "upload_date" "$CHANNEL_URL" | jq -r '[{title: .title, url: ("https://www.youtube.com/watch?v=" + .id), uploader: .uploader}]' > "$TEMP_FILE"
-
-            if [[ $? -ne 0 ]]; then
-                echo "An error occurred while processing $CHANNEL_URL"
-                rm "$TEMP_FILE"  # Clean up temporary file
-                continue
-            fi
-            
-            echo "$UPLOADER_NAME"
-            if [[ -z "$UPLOADER_NAME" ]]; then
-                echo "Could not retrieve uploader name for $CHANNEL_URL"
-                rm "$TEMP_FILE"
-                continue
-            fi
-
-            channel_name=$(echo "$CHANNEL_URL" | cut -d'@' -f2)
-            echo "Channel Name: $channel_name"
-
-            # Set the output JSON file path
-            #FIX: should just be set once
-            OUTPUT_FILE="${SAVE_DIR}${channel_name}.json"
-
-            # Check if the JSON file for this uploader already exists
-            if [[ -f "$OUTPUT_FILE" ]]; then
-                # Merge the new data with the existing JSON file
-                jq -s '.[0] + .[1]' "$OUTPUT_FILE" "$TEMP_FILE" > "${OUTPUT_FILE}.tmp" && mv "${OUTPUT_FILE}.tmp" "$OUTPUT_FILE"
-            else
-                # If the file doesn't exist, simply move the temp file to the output file
-                mv "$TEMP_FILE" "$OUTPUT_FILE"
-            fi
-
-            if [[ $? -eq 0 ]]; then
-                echo "Links from $CHANNEL_URL saved to $OUTPUT_FILE"
-            else
-                echo "An error occurred while saving $OUTPUT_FILE"
-            fi
-
-        fi
-    done < "$CHANNELS_FILE"
-}
-
-# subs() {
-#
-#     #TODO: has to be the uploader metadata
-#     FILENAME="tbd"
-#
-#     # Set the default directory
-#     BASE_SAVE_DIR=$HOME/media/videos/subs/
-#
-#     # Create the directory if it doesn't exist
-#     mkdir -p "$BASE_SAVE_DIR"
-#
-#     # Set the output file path
-#     OUTPUT_FILE="${SAVE_DIR}${FILENAME}.json"
-#
-#     # Create a temporary file for the new data
-#     TEMP_FILE=$(mktemp)
-#
-#     # Run yt-dlp and save new data to the temporary file
-#     yt-dlp -j --flat-playlist "$1" | jq -r '[. | {title: .title, url: ("https://www.youtube.com/watch?v=" + .id)}]' > "$TEMP_FILE"
-#
-#     if [[ $? -ne 0 ]]; then
-#         echo "An error occurred."
-#         rm "$TEMP_FILE"  # Clean up the temporary file
-#         return 1
-#     fi
-#
-#     # Check if the JSON file already exists
-#     if [[ -f "$OUTPUT_FILE" ]]; then
-#         # If it exists, merge the new data with the existing data
-#         jq -s '.[0] + .[1]' "$OUTPUT_FILE" "$TEMP_FILE" > "${OUTPUT_FILE}.tmp" && mv "${OUTPUT_FILE}.tmp" "$OUTPUT_FILE"
-#     else
-#         # If the file doesn't exist, simply move the temp file to the output file
-#         mv "$TEMP_FILE" "$OUTPUT_FILE"
-#     fi
-#
-#     if [[ $? -eq 0 ]]; then
-#         echo "Playlist links saved to $OUTPUT_FILE"
-#     else
-#         echo "An error occurred."
-#     fi
-# }
 
 getFromJson() {
     # Ask what the user wants to do
@@ -474,7 +336,7 @@ alias phi="ollama run phi3:medium"
 alias llama="ollama run llama3.1:latest"
 
 #yt
-alias yt="cd ~/media/tmp/ && ytfzf"
+alias yt="mkdir -p ~/media/tmp/ && cd ~/media/tmp/ && ytfzf"
 
 #yt-dlp
 
@@ -567,6 +429,77 @@ vpndown() {
 
 alias uniotp="oathtool --totp b10ada0fe7c9e4443856ceadad78b1caa1b88164"
 
+moveMusic() {
+    find $HOME/media/yt-dlp-scripts/ -type f \( -iname "*.mp3" -o -iname "*.m4a" \) -exec mv {} $HOME/media/music/ \;
+}
+
+alias news="newsboat -r"
+alias exportNews="newboat -e > $HOME/mega/dotDocuments/feeds.opml"
+
+init() {
+    sudo pacman -Syu 
+    clear 
+    echo "Do you want to clean up big time? [y]es | [n]o" 
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        y)
+            sudo pacman -Rns $(pacman -Qdtq)
+            ;;
+        *)
+            ;;
+    esac
+    clear
+    # Ask what the user wants to do
+    echo "Do you want to: [a]ctivate the vpn and [d]on't?"
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        a)
+            vpnup
+            ;;
+        *)
+            ;;
+    esac
+
+    echo "-------------------------------\n"
+    cal
+    echo "-------------------------------\n"
+    khal list
+    echo "-------------------------------\n *help* for searchable list of functions and aliases"
+    echo "-------------------------------\n"
+    curl https://am.i.mullvad.net/json | jq
+
+    echo "Do you want to read your rss feed? [y]es | [n]o" 
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        y)
+            news
+            ;;
+        *)
+            ;;
+    esac
+
+    echo "Do you want to turn on music? [y]es | [n]o" 
+    read -k1 action
+    echo
+
+    # Set the yt-dlp command based on user input
+    case $action in
+        y)
+            rmsl
+            ;;
+        *)
+            ;;
+    esac
+}
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"

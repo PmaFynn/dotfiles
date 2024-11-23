@@ -1,0 +1,4 @@
+root: ".todo_app/"
+file:
+    default: "main.txt"
+    example: "example.txt"

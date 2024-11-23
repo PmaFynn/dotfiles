@@ -1,7 +1,7 @@
 [calendars]
 
 [[private]]
-path = /home/fynn/.local/share/khal/calendars/private
+path = /home/fynn/mega/calendars/private
 type = calendar
 
 [locale]

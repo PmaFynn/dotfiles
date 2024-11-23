@@ -1,0 +1,13 @@
+[Unit]
+Description=Rclone Sync with inotifywait
+After=network.target
+
+[Service]
+ExecStart=/bin/bash /home/fynn/mega/scripts/rclone_sync.sh
+Restart=always
+RestartSec=10
+KillMode=process
+Type=simple
+
+[Install]
+WantedBy=default.target
