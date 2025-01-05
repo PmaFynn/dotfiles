@@ -501,6 +501,8 @@ init() {
     esac
 }
 
+alias syncRemote="rclone copy -P mega:/dotDocuments/ /home/fynn/mega/dotDocuments/"
+
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
 
