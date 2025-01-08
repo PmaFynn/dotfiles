@@ -502,6 +502,7 @@ init() {
 }
 
 alias syncRemote="rclone copy -P mega:/dotDocuments/ /home/fynn/mega/dotDocuments/"
+alias da="cd /home/fynn/uni/ul/programming/ && source .venv/bin/activate && jupyter notebook"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
