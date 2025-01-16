@@ -45,6 +45,9 @@ mandoc
 interception-caps2esc
 entr
 
+### AUR packages 
+buku
+
 ## setting up symlink vi that points to nvim
 ```
 sudo ln -s /usr/bin/nvim /usr/bin/vi

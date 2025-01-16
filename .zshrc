@@ -95,6 +95,8 @@ fi
 # else
 #   export EDITOR='mvim'
 # fi
+export VISUAL=vi
+export EDITOR=vi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -503,6 +505,8 @@ init() {
 
 alias syncRemote="rclone copy -P mega:/dotDocuments/ /home/fynn/mega/dotDocuments/"
 alias da="cd /home/fynn/uni/ul/programming/ && source .venv/bin/activate && jupyter notebook"
+alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
+alias b="buku --suggest"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
