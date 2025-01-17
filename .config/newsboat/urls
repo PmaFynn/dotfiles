@@ -1,22 +1,21 @@
 https://newleftreview.org/feed
 https://de.gegenstandpunkt.com/feeds/neuigkeiten.xml
-https://fmhy.net/feed.rss
 https://de.gegenstandpunkt.com/feeds/aktuelle-artikelempfehlungen.xml
 https://de.gegenstandpunkt.com/feeds/veranstaltungen.xml
 https://de.gegenstandpunkt.com/feeds/tondokumente.xml
-https://redsails.org/rss.xml
-https://feeds.fireside.fm/weirdstudies/rss
+https://redsails.org/rss.xml	blogish
+https://feeds.fireside.fm/weirdstudies/rss	podcast
+https://shwep.net/podcast/feed	podcast
 https://hnrss.org/newest?points=500
 https://www.youtube.com/feeds/videos.xml?channel_id=UCSkzHxIcfoEr69MWBdo0ppg	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UC3FD64RRsrCLpiZNkq7ZkSg	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCVHxJghKAB_kA_5LMM8MD3w	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCN__G2hSqRKuqedN3M0JCDg	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCTRjcYzSUGb0UwTP1gNf1uQ	yt
-https://www.youtube.com/feeds/videos.xml?channel_id=UCpBRZBzWQ_cCc_9zKG08L-g	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCUyvQV2JsICeLZP4c_h40kA	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCkT7pg-YFt3k1N17q4vIAhg	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCCJ57t-PkZnH8mqUk6GOl-g	yt
-https://politepol.com/fd/AVbDkSXtpT3X.xml
+https://politepol.com/fd/AVbDkSXtpT3X.xml	podcast
 https://nitter.poast.org/SurplusProduce/rss
 https://www.reddit.com/r/worldnews/top.rss?t=week	reddit
 https://www.reddit.com/r/leagueoflegends/top.rss?t=week	reddit
@@ -25,5 +24,7 @@ https://www.reddit.com/r/todayilearned/top.rss?t=year	reddit
 https://www.youtube.com/feeds/videos.xml?channel_id=UCC_U42VfmvotYaWD7Ov0Q9w	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCmh5gdwCx6lN7gEC20leNVA	yt
 https://www.reddit.com/r/livestreamfail/top.rss?t=year	reddit
-https://jvns.ca/atom.xml	blog
-https://ncase.me/feed.xml	blog
+https://jvns.ca/atom.xml	blogish
+https://ncase.me/feed.xml	blogish
+https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw	yt
+https://www.youtube.com/feeds/videos.xml?channel_id=UC8ENHE5xdFSwx71u3fDH5Xw	yt
