@@ -1,8 +1,8 @@
 https://newleftreview.org/feed
-https://de.gegenstandpunkt.com/feeds/neuigkeiten.xml
-https://de.gegenstandpunkt.com/feeds/aktuelle-artikelempfehlungen.xml
-https://de.gegenstandpunkt.com/feeds/veranstaltungen.xml
-https://de.gegenstandpunkt.com/feeds/tondokumente.xml
+https://de.gegenstandpunkt.com/feeds/neuigkeiten.xml	gs
+https://de.gegenstandpunkt.com/feeds/aktuelle-artikelempfehlungen.xml	gs
+https://de.gegenstandpunkt.com/feeds/veranstaltungen.xml	gs
+https://de.gegenstandpunkt.com/feeds/tondokumente.xml	gs
 https://redsails.org/rss.xml	blogish
 https://feeds.fireside.fm/weirdstudies/rss	podcast
 https://shwep.net/podcast/feed	podcast
@@ -16,11 +16,12 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCUyvQV2JsICeLZP4c_h40kA	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCkT7pg-YFt3k1N17q4vIAhg	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCCJ57t-PkZnH8mqUk6GOl-g	yt
 https://politepol.com/fd/AVbDkSXtpT3X.xml	podcast
-https://nitter.poast.org/SurplusProduce/rss
+https://nitter.poast.org/SurplusProduce/rss	moritz tassow
 https://www.reddit.com/r/worldnews/top.rss?t=week	reddit
-https://www.reddit.com/r/leagueoflegends/top.rss?t=week	reddit
+https://www.reddit.com/r/leagueoflegends/top.rss?t=year	reddit
 https://www.reddit.com/r/counterstrike2/top.rss?t=year	reddit
 https://www.reddit.com/r/todayilearned/top.rss?t=year	reddit
+https://www.reddit.com/r/OnePiece/top.rss?t=year	reddit
 https://www.youtube.com/feeds/videos.xml?channel_id=UCC_U42VfmvotYaWD7Ov0Q9w	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCmh5gdwCx6lN7gEC20leNVA	yt
 https://www.reddit.com/r/livestreamfail/top.rss?t=year	reddit
