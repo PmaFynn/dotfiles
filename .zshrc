@@ -504,7 +504,7 @@ init() {
 }
 
 # alias syncRemote="rclone copy -P mega:/dotDocuments/ /home/fynn/mega/dotDocuments/"
-alias da="cd /home/fynn/misc/uni/UL/programming/ && source .venv/bin/activate && jupyter notebook"
+alias da="cd /home/fynn/misc/uni/master3/UL/ulPlayground/ && source .venv/bin/activate && jupyter notebook"
 alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
 alias b="buku --suggest"
 
