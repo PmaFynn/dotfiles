@@ -332,10 +332,8 @@ alias pwc="pass show -c"
 alias pwi="pass insert"
 
 # LLMs
-alias gemma="ollama run gemma2:27b"
 alias yiCode="ollama run yi-coder"
-alias phi="ollama run phi3:medium"
-alias llama="ollama run llama3.1:latest"
+alias phi="ollama run phi4"
 
 #yt
 alias yt="mkdir -p ~/media/tmp/ && cd ~/media/tmp/ && ytfzf"
@@ -508,6 +506,8 @@ alias da="cd /home/fynn/misc/uni/master3/UL/ulPlayground/ && source .venv/bin/ac
 alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
 alias b="buku --suggest"
 
+alias webui="DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve"
+
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
 
@@ -530,3 +530,5 @@ alias b="buku --suggest"
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. "$HOME/.local/bin/env"
