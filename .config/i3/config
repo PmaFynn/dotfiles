@@ -87,7 +87,7 @@ bindsym $mod+m bar mode toggle
 # bindsym $mod+i exec --no-startup-id sh -c "xdotool type \"$(grep -v '^#' ~/misc/computer/bookmarks | dmenu -i -l 50 | cut -f2)\""
 # bindsym $mod+i exec --no-startup-id sh -c "xdotool type \"$(grep -v '^#' ~/misc/computer/bookmarks | dmenu -i -l 50 | cut -f2 | sed 's/\"/\\\"/g')\""
 #this one rocks
-bindsym $mod+i exec --no-startup-id sh -c 'xdotool type "$(grep -v "^#" ~/mega/dotDocuments/bookmarks | dmenu -i -l 50 | cut -f2)"'
+bindsym $mod+i exec --no-startup-id sh -c 'xdotool type "$(grep -v "^#" ~/mega/bookmarks/bookmarks | dmenu -i -l 50 | cut -f2)"'
 
 
 
