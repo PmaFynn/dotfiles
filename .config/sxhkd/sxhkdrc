@@ -1,2 +1,2 @@
-Print
-	gnome-screenshot -a
+super + shift + s
+	flameshot gui -p /home/fynn/
