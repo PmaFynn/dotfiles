@@ -37,6 +37,9 @@ exec_always --no-startup-id xrandr --output HDMI-1 --right-of --output eDP-1 --d
 #picom
 exec_always --no-startup-id picom &
 
+#sxhkd hotkey tool
+exec_always --no-startup-id sxhkd &
+
 # open webui
 # doesnt work for some reason
 # exec_always --no-startup-id DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve
