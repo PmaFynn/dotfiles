@@ -434,7 +434,7 @@ moveMusic() {
 }
 
 alias news="newsboat -r"
-alias exportNews="newboat -e > $HOME/mega/dotDocuments/feeds.opml"
+alias exportNews="newsboat -e > $HOME/mega/dotDocuments/feeds.opml"
 
 init() {
     sudo pacman -Syu 

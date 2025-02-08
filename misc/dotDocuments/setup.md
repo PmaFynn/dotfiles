@@ -1,7 +1,6 @@
 # Settig up my personal (arch) linux env
 
 ## Packages to install
-alacritty
 bat
 cal
 gnome-screenshot
@@ -21,6 +20,7 @@ pass
 pavucontrol
 picom
 stow
+ghostty
 ttf-hack-nerd
 fdupes
 i3 
@@ -46,7 +46,9 @@ interception-caps2esc
 entr
 
 ### AUR packages 
-buku
+raindrop
+zotero
+
 
 ## setting up symlink vi that points to nvim
 ```
@@ -124,12 +126,6 @@ xdg-mime default org.pwmt.zathura.desktop application/pdf
 sudo pacman -S $(pacman -Sgq nerd-fonts)
 ```
 
-## get music (or vidoes) to phone
-1. install vlc
-2. activate "Sharing via Wi-Fi"
-3. open localost (or whatever host is written there)
-4. upload files
-
 ## mount harddisk:
 ```
 sudo pacman -S ntfs-3g
@@ -139,30 +135,14 @@ lsblk
 sudo mount -t ntfs-3g
 ```
 
-## best script for yt-dlp
-https://github.com/PmaFynn/yt-dlp-scripts:
-### prep
-1. git clone that shit
-2. set up .gitignore:
-```
-*.txt
-*.m4a
-*.opus
-*.describtion
-*.json
-*.webp
-*.webm
-*.mkv
-*.log
-```
-### usage
-1. potentially make .sh script executable
-2. insert source (yt link) into source.txt 
-3. execute .sh file
-
 ## oath-toolkit usage:
 used for TOTP (time-based one time passwords)
 ```
-oathtool --totp "YOUR_SECRET_KEY"
+oathtool --totp $YOUR_SECRET_KEY
 ```
-
+create alias 
+```
+alias showCaseOTP="oathtool --totp $YOUR_SECRET_KEY"
+```
+<!--TODO: Stuff that is missing:-->
+<!--TODO: firefox with betterFox config-->
