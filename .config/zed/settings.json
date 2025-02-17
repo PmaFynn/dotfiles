@@ -7,13 +7,27 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "assistant": {
+    "default_model": {
+      "provider": "ollama",
+      "model": "mistral-small:latest"
+    },
+    "version": "2"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  // Use relative line numbers
+  "relative_line_numbers": true,
+  // Hide the scroll bar
+  "scrollbar": { "show": "never" },
   "vim_mode": true,
   "base_keymap": "VSCode",
   "ui_font_size": 16,
   "buffer_font_size": 16,
   "theme": {
     "mode": "system",
-    "light": "Gruvbox Light",
+    "light": "Gruvbox Light Hard",
     "dark": "One Dark"
   }
 }
