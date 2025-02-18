@@ -160,16 +160,16 @@ getLinks() {
     else
         FILENAME="$2"
     fi
-    
+
     # Set the default directory
     SAVE_DIR=~/media/playlistsAsJson/
-    
+
     # Create the directory if it doesn't exist
     mkdir -p "$SAVE_DIR"
-    
+
     # Set the output file path
     OUTPUT_FILE="${SAVE_DIR}${FILENAME}.json"
-    
+
     # Create a temporary file for the new data
     TEMP_FILE=$(mktemp)
 
@@ -437,9 +437,9 @@ alias news="newsboat -r"
 alias exportNews="newsboat -e > $HOME/mega/dotDocuments/feeds.opml"
 
 init() {
-    sudo pacman -Syu 
-    clear 
-    echo "Do you want to clean up big time? [y]es | [n]o" 
+    sudo pacman -Syu
+    clear
+    echo "Do you want to clean up big time? [y]es | [n]o"
     read -k1 action
     echo
 
@@ -474,7 +474,7 @@ init() {
     echo "-------------------------------\n"
     curl https://am.i.mullvad.net/json | jq
 
-    echo "Do you want to read your rss feed? [y]es | [n]o" 
+    echo "Do you want to read your rss feed? [y]es | [n]o"
     read -k1 action
     echo
 
@@ -487,7 +487,7 @@ init() {
             ;;
     esac
 
-    echo "Do you want to turn on music? [y]es | [n]o" 
+    echo "Do you want to turn on music? [y]es | [n]o"
     read -k1 action
     echo
 
@@ -502,7 +502,7 @@ init() {
 }
 
 # alias syncRemote="rclone copy -P mega:/dotDocuments/ /home/fynn/mega/dotDocuments/"
-alias da="cd /home/fynn/misc/uni/master3/UL/ulPlayground/ && source .venv/bin/activate && jupyter notebook"
+alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && zed ."
 alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
 alias b="buku --suggest"
 
