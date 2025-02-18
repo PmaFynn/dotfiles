@@ -502,7 +502,7 @@ init() {
 }
 
 # alias syncRemote="rclone copy -P mega:/dotDocuments/ /home/fynn/mega/dotDocuments/"
-alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && zed ."
+alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && zed . && exit"
 alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
 alias b="buku --suggest"
 
