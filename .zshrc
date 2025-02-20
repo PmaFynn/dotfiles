@@ -77,9 +77,9 @@ plugins=(git vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 #start tmux directly
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux new-session && exit;
-fi
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux new-session && exit;
+# fi
 
 
 # User configuration
