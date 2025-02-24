@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "show_edit_predictions": false,
+  "languages": {
+    "Python": {
+      "show_edit_predictions": false
+    }
+  },
   "assistant": {
     "default_model": {
       "provider": "ollama",
@@ -39,7 +45,7 @@
   "buffer_font_size": 16,
   "theme": {
     "mode": "system",
-    "light": "Catppuccin Macchiato",
+    "light": "New Darcula",
     "dark": "One Dark"
   }
 }
