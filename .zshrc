@@ -467,9 +467,7 @@ init() {
     esac
 
     echo "-------------------------------\n"
-    cal
-    echo "-------------------------------\n"
-    khal list
+    calcurse --todo --appointment
     echo "-------------------------------\n *help* for searchable list of functions and aliases"
     echo "-------------------------------\n"
     curl https://am.i.mullvad.net/json | jq
@@ -505,7 +503,8 @@ init() {
 alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && zed . && exit"
 alias algo="cd /home/fynn/projects/python/algoVis/ && source .venv/bin/activate && zed . && exit"
 alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
-alias b="buku --suggest"
+alias todo="calcurse"
+
 
 alias webui="DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve"
 
