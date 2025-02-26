@@ -392,13 +392,14 @@ alias addBday="khal new -g bday -r yearly"
 
 helpStatic() {
     echo "
-    cale -> khal calendar -> calendar \n
-    bday -> displays next birthdays -> calendar \n
     getLinks -> takes a yt link as argument and adds it either to watch later json file if no second argument is given or to the second argument -> \"getLinks ytLink name\" -> name.json -> media \n
     wl -> search through watch Later playlist -> media \n
     yt -> opens youtube cli -> media \n
     getFromJson -> searches through all playlists of mine -> media \n
     mss -> searches for music -> media \n
+    today -> shows stuff todo :D \n
+    .. -> goes back one directory -> misc \n
+    td -> opens calcurse -> misc \n
     rmsl -> plays random music on loop -> media \n
     mssf -> search music to add selected to favourites -> media \n
     favs -> plays favourites on shuffle -> media \n
@@ -488,9 +489,6 @@ init() {
     esac
 
     echo "-------------------------------\n"
-    calcurse --todo --appointment
-    echo "-------------------------------\n *help* for searchable list of functions and aliases"
-    echo "-------------------------------\n"
     curl https://am.i.mullvad.net/json | jq
 
     echo "Do you want to read your rss feed? [y]es | [n]o"
@@ -518,6 +516,10 @@ init() {
         *)
             ;;
     esac
+
+    clear
+    echo "-------------------------------\n *help* for searchable list of functions and aliases\n-------------------------------"
+    calcurse --todo --appointment
 }
 
 # alias syncRemote="rclone copy -P mega:/dotDocuments/ /home/fynn/mega/dotDocuments/"
