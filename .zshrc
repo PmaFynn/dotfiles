@@ -436,6 +436,27 @@ moveMusic() {
 alias news="newsboat -r"
 alias exportNews="newsboat -e > $HOME/mega/dotDocuments/feeds.opml"
 
+td() {
+    local prio="0"
+    local item=""
+
+    if [ $# -eq 0 ]; then
+        calcurse
+    elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        echo "USAGE:\n\ttd -[0-9]? todo goes here\n\nEXAMPLE:\n\ttd -2 clean kitchen"
+        shift        # Remove the first argument so the rest are part of the todo item
+    elif [[ $1 =~ ^-[0-9]$ ]]; then
+        prio=${1#-}  # Extract the number (remove leading '-')
+        shift        # Remove the first argument so the rest are part of the todo item
+    else
+        # Join remaining arguments into the todo item
+        item="$*"
+
+        echo "[$prio] $item" >> /home/fynn/.local/share/calcurse/todo
+    fi
+
+}
+
 init() {
     sudo pacman -Syu
     clear
@@ -503,7 +524,7 @@ init() {
 alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && zed . && exit"
 alias algo="cd /home/fynn/projects/python/algoVis/ && source .venv/bin/activate && zed . && exit"
 alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
-alias todo="calcurse"
+alias today="calcurse --todo --appointment"
 
 
 alias webui="DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve"
