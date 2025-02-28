@@ -444,18 +444,18 @@ td() {
     if [ $# -eq 0 ]; then
         calcurse
     elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
-        echo "USAGE:\n\ttd -[0-9]? todo goes here\n\nEXAMPLE:\n\ttd -2 clean kitchen"
-        shift        # Remove the first argument so the rest are part of the todo item
+        echo -e "USAGE:\n\ttd -[0-9]? todo goes here\n\nEXAMPLE:\n\ttd -2 clean kitchen"
     elif [[ $1 =~ ^-[0-9]$ ]]; then
         prio=${1#-}  # Extract the number (remove leading '-')
-        shift        # Remove the first argument so the rest are part of the todo item
+        shift        # Remove the first argument
+        item="$*"    # Capture the remaining arguments as the todo item
     else
-        # Join remaining arguments into the todo item
-        item="$*"
-
-        echo "[$prio] $item" >> /home/fynn/.local/share/calcurse/todo
+        item="$*"    # No priority flag, just the item
     fi
 
+    if [[ -n "$item" ]]; then
+        echo "[$prio] $item" >> /home/fynn/.local/share/calcurse/todo
+    fi
 }
 
 init() {
@@ -530,6 +530,8 @@ alias today="calcurse --todo --appointment"
 
 
 alias webui="DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve"
+
+alias latin="zathura /home/fynn/media/books/latinBooks/linvaLatina.pdf & disown; exit"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
