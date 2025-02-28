@@ -27,7 +27,7 @@ palette = 13=#f2a9dd
 palette = 14=#63cbc0
 palette = 15=#b8c0e0
 font-size = 16
-keybind = ctrl+n=new_window
+keybind = ctrl+b>c=new_window
 
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
