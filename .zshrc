@@ -146,7 +146,18 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
-alias svi="fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}' | xargs vi"
+
+function svi() {
+    local file
+    file=$(fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}') || return 1
+    cd "$(dirname "$file")" || return 1
+    basename $file | xargs vi || return 1
+}
+
+function fcd() {
+    file=$(fd --type f --hidden --exclude .git | fzf --reverse --preview 'bat {1}') || return 1
+    cd "$(dirname "$file")" || return 1
+}
 
 getLinks() {
     if [[ -z "$1" ]]; then
@@ -532,6 +543,7 @@ alias today="calcurse --todo --appointment"
 alias webui="DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve"
 
 alias latin="zathura /home/fynn/media/books/latinBooks/linvaLatina.pdf & disown; exit"
+alias lb="./projects/ladybird/Build/release/bin/Ladybird"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"

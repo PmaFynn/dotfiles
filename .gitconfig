@@ -58,3 +58,9 @@
 
 [alias]
         out = "log @{u}.."
+        lg = "log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30 --graph"
+        l1 = "lg -1"
+        l5 = "lg -5"
+        s = "status"
+        # Open repo in browser  
+        browse = "!f() { xdg-open $(git remote get-url origin | sed -E 's#^(git@|git://)#http://#' | sed -E 's#com:#com/#'); }; f"
