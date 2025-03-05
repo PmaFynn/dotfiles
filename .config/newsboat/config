@@ -65,7 +65,7 @@ macro c set browser "echo %u | xclip -r -sel c" ; open-in-browser ; set browser 
 macro C set browser "youtube-viewer --comments=%u" ; open-in-browser ; set browser linkhandler
 
 
-browser "firefox %u"
+browser "floorp %u"
 
 highlight all "---.*---" yellow
 highlight feedlist ".*(0/0))" black
