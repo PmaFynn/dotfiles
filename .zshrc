@@ -542,7 +542,31 @@ alias today="calcurse --todo --appointment"
 
 alias webui="DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve"
 
-alias latin="zathura /home/fynn/media/books/latinBooks/linvaLatina.pdf & disown; exit"
+function latin() {
+    echo "What? [l]ingva latina, lingva latina [e]xercises, lingva latina [audiobook], [p]ugio bruti"
+    read -k1 action
+    echo
+
+    # audiobook: https://www.youtube.com/watch?v=YtPd2ALW5b4
+    case $action in
+        l)
+            zathura /home/fynn/media/books/latinBooks/lingvaLatina.pdf & disown; exit
+            ;;
+        e)
+            zathura /home/fynn/media/books/latinBooks/lingvaLatinaExercises.pdf & disown; exit
+            ;;
+        a)
+            mpv /home/fynn/media/books/latinBooks/lingvaLatinaAudio.opus
+            ;;
+        p)
+            zathura /home/fynn/media/books/latinBooks/linvaLatina.pdf & disown; exit
+            ;;
+        *)
+            ;;
+    esac
+    clear
+}
+
 alias lb="./projects/ladybird/Build/release/bin/Ladybird"
 
 #docker
