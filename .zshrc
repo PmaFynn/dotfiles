@@ -556,7 +556,7 @@ function latin() {
             zathura /home/fynn/media/books/latinBooks/lingvaLatinaExercises.pdf & disown; exit
             ;;
         a)
-            mpv /home/fynn/media/books/latinBooks/lingvaLatinaAudio.opus
+            mpv /home/fynn/media/audiobooks/lingvaLatinaAudio.opus
             ;;
         p)
             zathura /home/fynn/media/books/latinBooks/linvaLatina.pdf & disown; exit
