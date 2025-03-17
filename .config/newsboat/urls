@@ -3,6 +3,8 @@ https://apod.com/feed.rss
 https://de.gegenstandpunkt.com/feeds/neuigkeiten.xml	gs
 https://de.gegenstandpunkt.com/feeds/aktuelle-artikelempfehlungen.xml	gs
 https://de.gegenstandpunkt.com/feeds/veranstaltungen.xml	gs
+https://www.contradictio.de/blog/archives/category/veranstaltungen/feed	gs
+https://www.contradictio.de/blog/allg-beitraege/feed
 https://de.gegenstandpunkt.com/feeds/tondokumente.xml	gs
 https://redsails.org/rss.xml	blogish
 https://feeds.fireside.fm/weirdstudies/rss	podcast
@@ -20,7 +22,12 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCkT7pg-YFt3k1N17q4vIAhg	yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCCJ57t-PkZnH8mqUk6GOl-g	yt
 https://politepol.com/fd/AVbDkSXtpT3X.xml	podcast
 https://nitter.poast.org/SurplusProduce/rss	moritz tassow
-https://nitter.poast.org/nymoen_ole/rss	ole nymoen
+https://nitter.poast.org/pbahners/rss	patrick bahners
+https://nitter.poast.org/OliverBWeber/rss	OliverWeber
+https://nitter.poast.org/Fionnindy/rss	pascalZorn
+https://nitter.poast.org/richten_nach/rss	johannes Schmitthenner
+https://nitter.poast.org/FogelVlug/rss	nils kumkar
+https://nitter.poast.org/peter_schadt/rss	peter schadt
 https://www.reddit.com/r/worldnews/top.rss?t=week	reddit
 https://www.reddit.com/r/chess/top.rss?t=year	reddit
 https://www.reddit.com/r/ultraleft/top.rss?t=year	reddit
