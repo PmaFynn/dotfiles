@@ -568,6 +568,7 @@ function latin() {
 }
 
 alias lb="./projects/ladybird/Build/release/bin/Ladybird"
+alias lg="lazygit"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
