@@ -533,8 +533,8 @@ init() {
     calcurse --todo --appointment
 }
 
-# alias syncRemote="rclone copy -P mega:/dotDocuments/ /home/fynn/mega/dotDocuments/"
-alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && zed . && exit"
+alias getRemote="rclone sync mega: /home/fynn/remoteMega/ --exclude \"desktopArch/**\" -v"
+alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && jupyter notebook"
 alias algo="cd /home/fynn/projects/python/algoVis/ && source .venv/bin/activate && zed . && exit"
 alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
 alias today="calcurse --todo --appointment"
@@ -569,6 +569,7 @@ function latin() {
 
 alias lb="./projects/ladybird/Build/release/bin/Ladybird"
 alias lg="lazygit"
+alias sql="psql -d dvd -U fynn"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
