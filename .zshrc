@@ -469,6 +469,28 @@ td() {
     fi
 }
 
+updateCal() {
+    echo "Update Calendar? [y]es | [n]o"
+    read -k1 action
+    echo
+
+    case $action in
+        y)
+            cd /home/fynn/projects/hugo/fynnfr/static/cal/ && \
+            calcurse -x > calendar.ics && \
+            git add calendar.ics && \
+            git commit -m "cal: update calendar" && \
+            git push
+            ;;
+        *)
+            ;;
+    esac
+
+    cd $HOME
+    clear
+    echo "calendar updated"
+}
+
 init() {
     sudo pacman -Syu
     clear
@@ -515,6 +537,8 @@ init() {
             ;;
     esac
 
+    updateCal()
+
     echo "Do you want to turn on music? [y]es | [n]o"
     read -k1 action
     echo
@@ -535,12 +559,13 @@ init() {
 
 alias getRemote="rclone sync mega: /home/fynn/remoteMega/ --exclude \"desktopArch/**\" -v"
 alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && jupyter notebook"
-alias algo="cd /home/fynn/projects/python/algoVis/ && source .venv/bin/activate && zed . && exit"
-alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
+# alias cs="cd /home/fynn/misc/uni/master4/sl/caseStudy/ && source .venv/bin/activate && jupyter notebook"
+# alias algo="cd /home/fynn/projects/python/algoVis/ && source .venv/bin/activate && zed . && exit"
+# alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
 alias today="calcurse --todo --appointment"
 
 
-alias webui="DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve"
+# alias webui="DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve"
 
 function latin() {
     echo "What? [l]ingva latina, lingva latina [e]xercises, lingva latina [audiobook], [p]ugio bruti"
