@@ -594,7 +594,7 @@ function latin() {
 
 alias lb="./projects/ladybird/Build/release/bin/Ladybird"
 alias lg="lazygit"
-alias sql="psql -d dvd -U fynn"
+alias sql="okular /home/fynn/media/books/textbooks/'SQL Queries for Mere Mortals.pdf' & disown; exit"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
