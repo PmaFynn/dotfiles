@@ -559,6 +559,7 @@ init() {
 
 alias getRemote="rclone sync mega: /home/fynn/remoteMega/ --exclude \"desktopArch/**\" -v"
 alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && jupyter notebook"
+alias dl="cd /home/fynn/misc/uni/master4/dl/python_playground/ && source .venv/bin/activate && jupyter notebook"
 # alias cs="cd /home/fynn/misc/uni/master4/sl/caseStudy/ && source .venv/bin/activate && jupyter notebook"
 # alias algo="cd /home/fynn/projects/python/algoVis/ && source .venv/bin/activate && zed . && exit"
 # alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
