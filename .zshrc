@@ -392,14 +392,9 @@ alias getMovie="cd ~/media/videos/movies/ && yt-dlp -f bestvideo+bestaudio --mer
 alias getVideo="cd ~/media/videos/ && yt-dlp -f bestvideo+bestaudio --merge-output-format webm -o \"%(title)s.%(ext)s\""
 
 
-alias cale="khal calendar"
 
-alias bday="khal search bday | head -5"
 alias cal="cal -m"
 
-# expects [datetime] [summary]
-alias addBday="khal new -g bday -r yearly"
-# next 5 bdays
 
 helpStatic() {
     echo "
