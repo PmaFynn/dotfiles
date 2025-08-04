@@ -555,6 +555,7 @@ init() {
 alias getRemote="rclone sync mega: /home/fynn/remoteMega/ --exclude \"desktopArch/**\" -v"
 alias sl="cd /home/fynn/misc/uni/master4/sl/python/ && source .venv/bin/activate && jupyter notebook"
 alias dl="cd /home/fynn/misc/uni/master4/dl/python_playground/ && source .venv/bin/activate && jupyter notebook"
+alias cs="cd /home/fynn/misc/uni/master4/dl/case_study/ && source .venv/bin/activate && jupyter notebook"
 # alias cs="cd /home/fynn/misc/uni/master4/sl/caseStudy/ && source .venv/bin/activate && jupyter notebook"
 # alias algo="cd /home/fynn/projects/python/algoVis/ && source .venv/bin/activate && zed . && exit"
 # alias regex="cd tmp/textual_apps && source bin/activate && regexexercises"
@@ -591,6 +592,9 @@ function latin() {
 alias lb="./projects/ladybird/Build/release/bin/Ladybird"
 alias lg="lazygit"
 alias sql="okular /home/fynn/media/books/textbooks/'SQL Queries for Mere Mortals.pdf' & disown; exit"
+alias activate="source .venv/bin/activate"
+alias rmlck="sudo rm -v /var/lib/pacman/db.lck"
+alias sleepy="systemctl suspend"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
