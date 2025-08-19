@@ -343,8 +343,8 @@ alias pwc="pass show -c"
 alias pwi="pass insert"
 
 # LLMs
-alias yiCode="ollama run yi-coder"
-alias phi="ollama run phi4"
+alias gpt="ollama run gpt-oss"
+alias gemma="ollama run gemma3:27b"
 
 #yt
 alias yt="mkdir -p ~/media/tmp/ && cd ~/media/tmp/ && ytfzf"
