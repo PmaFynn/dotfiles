@@ -30,20 +30,17 @@
         "format": "{icon}",
         "format-icons": {
             "default": "",
-	    "1": "1",
-	    "2": "2",
-	    "3": "3",
+	    "1": "",
+	    "1": "󰣇",
 	    "4": "",
-	    "5": "5",
-	    "6": "6",
-	    "7": "7",
-            "8": "",
-            "9": "",
-	    "10": "",
+	    "10": "",
+	    "5": "",
+	    "2": "",
+            "8": "",
             "urgent": "󱓻"
         },
             "persistent-workspaces": {
-                "*": [1,2,3,4,5,6,7,8,9,10 ]
+                "*": [1,4,8,10 ]
             }
     },
     "memory": {
@@ -130,6 +127,6 @@
     "custom/power": {
         "format": "󰤆",
         "tooltip": false,
-        "on-click": "~/.config/scripts/powermenu.sh"
+        "on-click": "~/.config/rofi/powermenu/type-2/powermenu.sh &"
     }
 }
