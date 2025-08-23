@@ -3,7 +3,10 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export MANPAGER="nvim +Man!"
 export ZSH="$HOME/.oh-my-zsh"
+export VISUAL=vi
+export EDITOR=vi
 export ICECAT_HOME="/opt/icecat/"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -11,6 +14,12 @@ export ICECAT_HOME="/opt/icecat/"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+#
+# History in cache directory:
+HISTSIZE=10000
+SAVEHIST=10000
+
+source <(fzf --zsh)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -95,8 +104,6 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
-export VISUAL=vi
-export EDITOR=vi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
