@@ -21,6 +21,9 @@ SAVEHIST=10000
 
 source <(fzf --zsh)
 
+
+_comp_options+=(globdots)		# Include hidden files.
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -494,7 +497,7 @@ updateCal() {
 }
 
 init() {
-    sudo pacman -Syu
+    sudo paru -Syu
     clear
     echo "Do you want to clean up big time? [y]es | [n]o"
     read -k1 action

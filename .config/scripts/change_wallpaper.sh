@@ -9,5 +9,5 @@ CURRENT_WALL=$(hyprctl hyprpaper listloaded | awk '{print $2}')  # get only path
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
 
 # Apply the selected wallpaper
-hyprctl hyprpaper reload "DP-3,$WALLPAPER"
+hyprctl hyprpaper reload "DP-1,$WALLPAPER"
 
