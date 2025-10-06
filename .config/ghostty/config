@@ -3,7 +3,7 @@
 shell-integration = zsh
 clipboard-read = allow
 clipboard-write = allow
-theme = catppuccin-macchiato
+theme = Builtin Solarized Light
 background = #24273a
 foreground = #cad3f5
 selection-background = #5b6078

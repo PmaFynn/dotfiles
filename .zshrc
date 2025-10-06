@@ -497,7 +497,7 @@ updateCal() {
 }
 
 init() {
-    sudo paru -Syu
+    sudo pacman -Syu
     clear
     echo "Do you want to clean up big time? [y]es | [n]o"
     read -k1 action
@@ -605,6 +605,11 @@ alias sql="okular /home/fynn/media/books/textbooks/'SQL Queries for Mere Mortals
 alias activate="source .venv/bin/activate"
 alias rmlck="sudo rm -v /var/lib/pacman/db.lck"
 alias sleepy="systemctl suspend"
+alias modifyKeyboard="sudo mkdir -p /mnt/vdrive && sudo mount /dev/sda /mnt/vdrive && sudo vi /mnt/vdrive/layouts/layout1.txt"
+alias umountKeyboard="sudo cp /mnt/vdrive/layouts/layout1.txt /home/fynn/mega/dotDocuments/keyboard_layout.txt && sudo umount /mnt/vdrive"
+alias leetcode="nvim leetcode.nvim"
+alias timer="termdown"
+alias g+++="g++ -std=c++20 -O2 -Wall"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
