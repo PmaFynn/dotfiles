@@ -119,7 +119,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+-- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
@@ -142,7 +142,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-require("custom.settings.conf")
+require 'custom.settings.conf'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -623,6 +623,7 @@ require('lazy').setup({
         clangd = {},
         -- gopls = {},
         basedpyright = {},
+        typstyle = {},
         tinymist = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -650,6 +651,40 @@ require('lazy').setup({
         },
       }
 
+      -- New API — no need to require("lspconfig")
+      vim.lsp.config['tinymist'] = {
+        on_attach = function(client, bufnr)
+          print '✅ Tinymist custom on_attach loaded'
+
+          -- Pin main Typst file
+          vim.keymap.set('n', '<leader>tp', function()
+            client.request('workspace/executeCommand', {
+              command = 'tinymist.pinMain',
+              arguments = { vim.api.nvim_buf_get_name(0) },
+            }, function(err)
+              if err then
+                vim.notify('❌ Tinymist pin failed: ' .. err.message, vim.log.levels.ERROR)
+              else
+                vim.notify('📌 Pinned ' .. vim.api.nvim_buf_get_name(0) .. ' as main Typst file', vim.log.levels.INFO)
+              end
+            end)
+          end, { buffer = bufnr, desc = '[T]inymist [P]in main Typst file' })
+
+          -- Unpin Typst file
+          vim.keymap.set('n', '<leader>tu', function()
+            client.request('workspace/executeCommand', {
+              command = 'tinymist.pinMain',
+              arguments = { vim.NIL },
+            }, function(_, _)
+              vim.notify('❌ Unpinned Typst main file', vim.log.levels.INFO)
+            end)
+          end, { buffer = bufnr, desc = '[T]inymist [U]npin main Typst file' })
+        end,
+      }
+
+      -- Finally, enable the server
+      vim.lsp.enable 'tinymist'
+
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
@@ -669,6 +704,7 @@ require('lazy').setup({
         'clangd',
         'clang-format',
         'tinymist',
+        'typstyle',
         'basedpyright',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -722,6 +758,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        typst = { 'typstyle' },
         cpp = { 'clang-format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },

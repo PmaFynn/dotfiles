@@ -497,6 +497,7 @@ updateCal() {
 }
 
 init() {
+	/home/fynn/.config/scripts/backup_zotero.sh
     sudo pacman -Syu
     clear
     echo "Do you want to clean up big time? [y]es | [n]o"
@@ -610,6 +611,8 @@ alias umountKeyboard="sudo cp /mnt/vdrive/layouts/layout1.txt /home/fynn/mega/do
 alias leetcode="nvim leetcode.nvim"
 alias timer="termdown"
 alias g+++="g++ -std=c++20 -O2 -Wall"
+alias odm="okular /home/fynn/misc/uni/master5/odm/odm_book.pdf"
+alias master="cd /home/fynn/misc/uni/master5/thesis/expose/"
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"
