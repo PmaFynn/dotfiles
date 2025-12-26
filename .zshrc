@@ -498,6 +498,8 @@ updateCal() {
 
 init() {
 	/home/fynn/.config/scripts/backup_zotero.sh
+	clear
+	echo "Zotero backed up"
     sudo pacman -Syu
     clear
     echo "Do you want to clean up big time? [y]es | [n]o"
@@ -612,7 +614,16 @@ alias leetcode="nvim leetcode.nvim"
 alias timer="termdown"
 alias g+++="g++ -std=c++20 -O2 -Wall"
 alias odm="okular /home/fynn/misc/uni/master5/odm/odm_book.pdf"
-alias master="cd /home/fynn/misc/uni/master5/thesis/expose/"
+alias master="cd /home/fynn/misc/uni/master5/thesis/thesis/"
+alias mtd="calcurse -D ~/.local/share/calcurse-thesis"
+
+masterlatex() {
+  pdflatex main_thesis.tex
+  biber main_thesis
+  pdflatex main_thesis.tex
+  pdflatex main_thesis.tex
+}
+
 
 #docker
 #alias dockerdesk="systemctl --user start docker-desktop"

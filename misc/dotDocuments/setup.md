@@ -2,8 +2,8 @@
 
 ## Packages to install
 bat
+sdcv
 cal
-gnome-screenshot
 open-resolv
 wireguard-tools
 oath-toolkit
@@ -14,7 +14,6 @@ mpv
 unzip
 fastfetch
 feh
-firefox
 htop
 pass
 pavucontrol
@@ -48,6 +47,8 @@ entr
 ### AUR packages 
 raindrop
 zotero
+stardict-dictd_www.dict.org_gcide
+stardict-web1913
 
 
 ## setting up symlink vi that points to nvim

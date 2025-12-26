@@ -1,0 +1,9 @@
+ configuration {
+        	font: "monospace 17";
+ }
+/*****----- Main Window -----*****/
+window {
+    /* properties for window widget */
+	height: 		10%;
+    width:                       50%;
+}
