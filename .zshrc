@@ -617,6 +617,7 @@ alias odm="okular /home/fynn/misc/uni/master5/odm/odm_book.pdf"
 alias master="cd /home/fynn/misc/uni/master5/thesis/thesis/"
 alias mtd="calcurse -D ~/.local/share/calcurse-thesis"
 
+#TODO: use makefile instead
 masterlatex() {
   pdflatex main_thesis.tex
   biber main_thesis
