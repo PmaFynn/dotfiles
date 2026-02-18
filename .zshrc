@@ -445,6 +445,7 @@ vpndown() {
 }
 
 alias uniotp="oathtool --totp b10ada0fe7c9e4443856ceadad78b1caa1b88164"
+alias laptopotp="oathtool --totp b7248bd42512c8cbbf7ea66f747d09bf7b7ef363"
 
 moveMusic() {
     find $HOME/media/yt-dlp-scripts/ -type f \( -iname "*.mp3" -o -iname "*.m4a" \) -exec mv {} $HOME/media/music/ \;
@@ -647,5 +648,3 @@ masterlatex() {
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-. "$HOME/.local/bin/env"
