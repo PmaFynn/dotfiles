@@ -611,12 +611,9 @@ alias rmlck="sudo rm -v /var/lib/pacman/db.lck"
 alias sleepy="systemctl suspend"
 alias modifyKeyboard="sudo mkdir -p /mnt/vdrive && sudo mount /dev/sda /mnt/vdrive && sudo vi /mnt/vdrive/layouts/layout1.txt"
 alias umountKeyboard="sudo cp /mnt/vdrive/layouts/layout1.txt /home/fynn/mega/dotDocuments/keyboard_layout.txt && sudo umount /mnt/vdrive"
-alias leetcode="nvim leetcode.nvim"
 alias timer="termdown"
-alias g+++="g++ -std=c++20 -O2 -Wall"
-alias odm="okular /home/fynn/misc/uni/master5/odm/odm_book.pdf"
-alias master="cd /home/fynn/misc/uni/master5/thesis/thesis/"
-alias mtd="calcurse -D ~/.local/share/calcurse-thesis"
+alias master="cd /home/fynn/misc/uni/master5/thesis/repo/"
+alias mtd="vi /home/fynn/misc/uni/master5/thesis/todo.md"
 
 #TODO: use makefile instead
 masterlatex() {
