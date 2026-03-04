@@ -499,6 +499,7 @@ updateCal() {
 
 init() {
 	/home/fynn/.config/scripts/backup_zotero.sh
+	/home/fynn/.config/scripts/backup_todo.sh
 	clear
 	echo "Zotero backed up"
     sudo pacman -Syu
