@@ -8,6 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export VISUAL=vi
 export EDITOR=vi
 export ICECAT_HOME="/opt/icecat/"
+export PATH="/opt/ST/STEdgeAI/4.0/Utilities/linux:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -444,7 +445,7 @@ vpndown() {
     curl https://am.i.mullvad.net/json | jq
 }
 
-alias uniotp="oathtool --totp b10ada0fe7c9e4443856ceadad78b1caa1b88164"
+alias uniotp="oathtool --totp b10ada0fe7c9e4443856ceadad78b1caa1b88164 | wl-copy"
 alias laptopotp="oathtool --totp b7248bd42512c8cbbf7ea66f747d09bf7b7ef363"
 
 moveMusic() {
@@ -614,14 +615,21 @@ alias modifyKeyboard="sudo mkdir -p /mnt/vdrive && sudo mount /dev/sda /mnt/vdri
 alias umountKeyboard="sudo cp /mnt/vdrive/layouts/layout1.txt /home/fynn/mega/dotDocuments/keyboard_layout.txt && sudo umount /mnt/vdrive"
 alias timer="termdown"
 alias master="cd /home/fynn/misc/uni/master5/thesis/repo/"
+alias kill_pipe="pkill -9 -f python"
 alias mtd="vi /home/fynn/misc/uni/master5/thesis/todo.md"
+alias start_zoom="QT_QPA_PLATFORM=wayland zoom"
+alias to_palma="scp -i $HOME/.ssh/id_ed25519 -r /home/fynn/misc/uni/master5/thesis/repo/data/coco.tar.gz ffriedri@palma-login.uni-muenster.de:/scratch/tmp/ffriedri/master_repo/data/"
+alias writing="cd /home/fynn/misc/uni/master5/thesis/writing/"
+alias coll="cd /home/fynn/misc/uni/master5/thesis/colloquium/"
+alias demo="mpv /home/fynn/tmp/IMG_8413_muted.mov"
+alias pdf="zathura ./main.pdf &"
 
 #TODO: use makefile instead
 masterlatex() {
-  pdflatex main_thesis.tex
-  biber main_thesis
-  pdflatex main_thesis.tex
-  pdflatex main_thesis.tex
+  pdflatex main.tex
+  biber main
+  pdflatex main.tex
+  pdflatex main.tex
 }
 
 

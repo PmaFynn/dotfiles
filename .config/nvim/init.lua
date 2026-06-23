@@ -623,7 +623,10 @@ require("lazy").setup({
 			local servers = {
 				-- clangd = {},
 				-- gopls = {},
-				-- pyright = {},
+				basedpyright = {},
+				texlab = {},
+				black = {},
+				isort = {},
 				-- rust_analyzer = {},
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
@@ -643,6 +646,8 @@ require("lazy").setup({
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
+				"isort",
+				"black",
 				-- You can add other tools here that you want Mason to install
 			})
 
@@ -720,6 +725,7 @@ require("lazy").setup({
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
+				python = { "isort", "black" },
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
@@ -913,6 +919,15 @@ require("lazy").setup({
 	--
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 	-- { import = 'custom.plugins' },
+	{
+		"lervag/vimtex",
+		lazy = false, -- we don't want to lazy load VimTeX
+		-- tag = "v2.15", -- uncomment to pin to a specific release
+		init = function()
+			-- VimTeX configuration goes here, e.g.
+			vim.g.vimtex_view_method = "zathura"
+		end,
+	},
 	--
 	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
 	-- Or use telescope!
